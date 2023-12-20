@@ -7,6 +7,8 @@ import { ListCovComponent } from './driver_dash/list-cov/list-cov.component';
 import { CreateCovComponent } from './driver_dash/create-cov/create-cov.component';
 import { UpdateCovComponent } from './driver_dash/update-cov/update-cov.component';
 import { ReservationsComponent } from './driver_dash/reservations/reservations.component';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -19,7 +21,8 @@ const routes: Routes = [
     {path:'list',component:ListCovComponent},
     {path:'Add',component:CreateCovComponent},
     {path:'Update-cov/:id',component:UpdateCovComponent},
-
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
     
  
 ];
