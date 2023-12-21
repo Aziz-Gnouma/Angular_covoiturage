@@ -47,18 +47,19 @@ export class LoginComponent implements OnInit {
                   
                   if (roles=='ADMIN') {
                     
-                    this.router.navigate(['admin'], {
+                    this.router.navigate(['/dashadmin'], {
                       state: { userResponse: res }
                     });
                   } else if (roles=='DRIVER') {
-                    this.router.navigate(['dash']);
+                    this.router.navigate(['/dash']);
                     localStorage.setItem('username', res.username);
                     localStorage.setItem('token', res.token);
                     localStorage.setItem('email', res.email);
                     localStorage.setItem('id', res.id.toString());
+                    console.log(res.username);
                     
                   }else if (roles=='CLIENT') {
-                    this.router.navigate(['client']);
+                    this.router.navigate(['/client']);
                     localStorage.setItem('username', res.username);
                     localStorage.setItem('token', res.token);
                     localStorage.setItem('email', res.email);

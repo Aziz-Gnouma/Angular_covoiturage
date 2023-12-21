@@ -17,6 +17,11 @@ import { TokenInterceptor } from './Token/token.interceptor';
 import { DatePipe } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { DashadminComponent } from './admin/dashadmin/dashadmin.component';
+import { ListDriverComponent } from './admin/list_driver/list-driver.component';
+import { ListClientComponent } from './admin/list-client/list-client.component';
+import { ListCoviComponent } from './admin/list-covi/list-covi.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +32,11 @@ import { SignupComponent } from './signup/signup.component';
     UpdateCovComponent,
     ReservationsComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    DashadminComponent,
+    ListDriverComponent,
+    ListClientComponent,
+    ListCoviComponent,
   ],
   imports: [
     NgxPaginationModule,

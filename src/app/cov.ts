@@ -1,6 +1,7 @@
 export class cov {
     id!: number;
     idriver!: number;
+    driverName!: string;
     depart!: string;
     destination!: string;
     description!: string;

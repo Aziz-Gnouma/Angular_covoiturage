@@ -16,7 +16,7 @@ export class CovoiturageService {
   private baseURL = "http://localhost:8083/driver/covoiturages";
   private FURL = "http://localhost:8083/driver/";
   private RURL = "http://localhost:3002/participation";
-  private log = "http://localhost:9898/auth/all";
+  private log = "http://localhost:9898/auth";
 
   constructor(private httpClient: HttpClient) { }
   
@@ -89,7 +89,7 @@ export class CovoiturageService {
     return this.httpClient.get<reservation>(`${this.RURL}AnnuledCount`);
     }
  getUsersList(): Observable<user[]>{
-  return this.httpClient.get<user[]>(`${this.log}`);
+  return this.httpClient.get<user[]>(`${this.log}/all`);
 }
 
 sendEmail(queryParams: string): Observable<any> {
@@ -98,5 +98,34 @@ sendEmail(queryParams: string): Observable<any> {
   return this.httpClient.post(url, null);
 }
 
+getDriversList(): Observable<user[]> {
+  return this.httpClient.get<user[]>(`${this.log}/drivers`);
+}
+deleteDriver(id: number): Observable<any> {
+  return this.httpClient.delete<any>(`${this.log}/${id}`); 
+}
+//list-client
+getClientsList(): Observable<user[]> {
+  return this.httpClient.get<user[]>(`${this.log}/clients`);
+}
+deleteClient(id: number): Observable<any> {
+  return this.httpClient.delete<any>(`${this.log}/${id}`); 
+}
+getParticipationsForCovoiturage(covoiturageId: number): Observable<reservation[]> {
+  return this.httpClient.get<reservation[]>(`${this.RURL}/${covoiturageId}`);
+}
+getParticipantsForCovoiturage(covoiturageId: number): Observable<any[]> {
+  return this.httpClient.get<any[]>(`http://localhost:3002/p/participants/cov/${covoiturageId}`);
+  // Supposons que l'endpoint pour obtenir les participants par ID de covoiturage est disponible dans votre API backend à cet endpoint
+}
+
+
+getClientById(clientId: number): Observable<any> {
+  return this.httpClient.get<any>(`${this.log}/${clientId}`);
+  // Endpoint pour obtenir les informations du client basées sur l'ID du client
+}
+deleteCovoiturageById(id: number): Observable<any> {
+  return this.httpClient.delete(`${this.baseURL}/${id}`);
+}
 
 }

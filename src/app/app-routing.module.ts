@@ -9,6 +9,10 @@ import { UpdateCovComponent } from './driver_dash/update-cov/update-cov.componen
 import { ReservationsComponent } from './driver_dash/reservations/reservations.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { DashadminComponent } from './admin/dashadmin/dashadmin.component';
+import { ListDriverComponent } from './admin/list_driver/list-driver.component';
+import { ListClientComponent } from './admin/list-client/list-client.component';
+import { ListCoviComponent } from './admin/list-covi/list-covi.component';
 
 
 
@@ -23,7 +27,10 @@ const routes: Routes = [
     {path:'Update-cov/:id',component:UpdateCovComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    
+    {path:'dashadmin',component:DashadminComponent},
+    {path:'listdriver',component:ListDriverComponent},
+    {path:'listclient',component:ListClientComponent},
+    {path:'listcov',component:ListCoviComponent},
  
 ];
 

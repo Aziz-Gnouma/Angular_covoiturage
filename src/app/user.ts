@@ -3,6 +3,6 @@ export class user {
     name!: number;
     email!: string;
     password!: string;
-    
+    role!: String;
 }
 //marque  

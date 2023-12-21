@@ -1,0 +1,180 @@
+<div class="sidebar">
+    <div class="sidebar-header">
+      <a href="/dashadmin" class="sidebar-logo">Wassalni</a>
+    </div><!-- sidebar-header -->
+    <div id="sidebarMenu" class="sidebar-body">
+      <div class="nav-group show">
+        <a  class="nav-label">Dashboard</a>
+        <ul class="nav nav-sidebar">
+          
+          <li class="nav-item">
+            <a routerLink="/dash" class="nav-link"><i class="ri-bar-chart-2-line"></i> <span>Website Analytics</span></a>
+          </li>
+         
+        </ul>
+      </div><!-- nav-group -->
+      <div class="nav-group show">
+        <a  class="nav-label">Tasks</a>
+        <ul class="nav nav-sidebar">
+          
+         
+            <li class="nav-item">
+                <a routerLink="/listdriver" class="nav-link"><i class="ri-calendar-line"></i> <span>List Drivers</span></a>
+              </li>
+            
+              <li class="nav-item">
+                <a routerLink="/listclient" class="nav-link"><i class="ri-checkbox-multiple-line"></i> <span>List Clients</span></a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/listcov" class="nav-link"><i class="ri-checkbox-multiple-line"></i> <span>Carpooling</span></a>
+              </li>
+          
+          
+        </ul>
+        
+      </div><!-- nav-group -->
+     
+    </div><!-- sidebar-body -->
+  
+  </div><!-- sidebar -->
+  
+  <div class="header-main px-3 px-lg-4">
+    <a id="menuSidebar" href="#" class="menu-link me-3 me-lg-4"><i class="ri-menu-2-fill"></i></a>
+  
+    <div class="form-search me-auto">
+      <input type="text" class="form-control" placeholder="Search">
+      <i class="ri-search-line"></i>
+    </div><!-- form-search -->
+  
+   
+    <div class="dropdown dropdown-profile ms-3 ms-xl-4">
+        <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><div class="avatar online"><img src="https://via.placeholder.com/500/4c5366/fff" alt=""></div></a>
+        <div class="dropdown-menu dropdown-menu-end mt-10-f">
+          <div class="dropdown-menu-body">
+            <div class="avatar avatar-xl online mb-3"><img src="https://via.placeholder.com/500/4c5366/fff" alt=""></div>
+            <h5 class="mb-1 text-dark fw-semibold">Shaira Diaz</h5>
+            <p class="fs-sm text-secondary">Premium Member</p>
+  
+          
+            <hr>
+            <nav class="nav">
+              
+              <a href=""><i class="ri-user-settings-line"></i> Account Settings</a>
+              <a href=""><i class="ri-logout-box-r-line"></i> Log Out</a>
+            </nav>
+          </div><!-- dropdown-menu-body -->
+        </div><!-- dropdown-menu -->
+    </div><!-- dropdown -->
+  </div><!-- header-main -->
+  
+  <div class="main main-app p-3 p-lg-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <div>
+        <ol class="breadcrumb fs-sm mb-1">
+          <li class="breadcrumb-item"><a >Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">List Carpooling</li>
+        </ol>
+        <h4 class="main-title mb-0">List Carpooling</h4>
+      </div>
+  
+    
+    </div>
+  
+    <div class="row g-3" style=" border-radius: 70%;">
+        <table class="table table-striped table-hover" >
+            <thead >
+                <tr>
+                  <th ><i style="color: green; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">id</i>
+                  </th>
+                    <th ><i style="color: green; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Name Driver</i>
+                    </th>
+                    <th><i style="color: green;font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Depart</i></th>
+                    <th><i style="color: green;font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Destination</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Price</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Date</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Phone</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Place</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Description</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">bagage</i></th>
+                    <th> <i style="color: red; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Place Reserved</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Marque</i></th>
+                    <th><i style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Action</i></th>
+                </tr>
+            </thead> <br>
+            
+            <tbody class="table-group-divider">
+              <tr *ngFor="let covoiturage of covoiturages">
+
+                <td>{{covoiturage.id}}</td>
+                <td>{{covoiturage.driverName}}</td>
+                <td>{{covoiturage.depart}}</td>
+                <td>{{covoiturage.destination}}</td>
+                <td>{{covoiturage.price}}</td>
+                <td>{{covoiturage.date}}</td>
+                <td>{{covoiturage.phone}}</td>
+                <td>{{covoiturage.place}}</td>
+                <td>{{covoiturage.description}}</td>
+                <td>{{covoiturage.bagage}}</td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Users<span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div  class="dropdown-menu" style="width: 700px; background: linear-gradient(to right, #a2d0ff, #ffffff); color: #000000;">
+                      <h6 style="font-weight: bold; color: #000000; margin-left: 40%;" class="dropdown-header">User List</h6>
+                      <div>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Etat</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-group-divider">
+                            <tr *ngFor="let participant of covoiturage.participants"> 
+                              <td>{{ participant.clientInfo?.name }}</td>
+                              <td>{{ participant.clientInfo?.email }}</td>
+                              <td><ng-container *ngIf="participant.etat === 1">
+                                En attente
+                              </ng-container>
+                              <ng-container *ngIf="participant.etat === 2">
+                                Accepté
+                              </ng-container></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <ng-template *ngIf="!covoiturage.participants || covoiturage.participants.length === 0">
+                        <p>No user data available.</p>
+                      </ng-template>
+                      
+                      
+                      <div class="dropdown-divider"></div>
+                      <a style="color: #000000;" class="dropdown-item">View All Reservations</a>
+                      
+                    </div>
+                  </div>
+                
+                </td>
+                <td>{{covoiturage.marque}}</td>
+                <td class="action-buttons">
+                  <button style="margin-left: 7%;" class="btn btn-danger" (click)="deleteCovoiturage(covoiturage.id)">Delete</button>
+                </td>
+              </tr>
+              <!-- Ajoutez d'autres lignes de données ici -->
+            </tbody>
+            
+            <pagination-controls></pagination-controls>
+            </table>
+            
+   
+    </div><!-- row -->
+
+  
+    <div class="main-footer mt-5">
+      <span>&copy; 2023. Dashboard. Admin.</span>
+      <span>Created by: <a  target="_blank">DevGenuis</a></span>
+    </div><!-- main-footer -->
+  </div><!-- main -->
+  
