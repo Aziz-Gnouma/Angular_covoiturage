@@ -1,0 +1,131 @@
+/* styles.css */
+
+body {
+  background-color: #c59898; /* Updated background color */
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fade-in 0.5s ease-in-out; /* Added fade-in animation */
+}
+
+.login-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333333;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in 0.5s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333333;
+  transition: all 0.3s;
+}
+
+.form-control1 {
+  height: 40px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+   /* Définir la largeur à 100% pour remplir le conteneur */
+  max-width: 350px;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 5px;
+  width: 300px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.form-text {
+  font-size: 14px;
+  color: #888888;
+}
+
+.signup-link {
+  border-top: 1px solid #cccccc;
+  padding-top: 15px;
+  font-size: 14px;
+  color: #333333;
+  text-align: center;
+  width: 300px;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  color: #0056b3;
+}
+/* styles.css */
+
+/* Existing styles */
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+  text-decoration: none;
+}
+
+#logo {
+  font-family: "Arial", sans-serif; 
+  color: #007bff; 
+  transition: color 0.3s;
+}
+
+#logo:hover {
+  color: #0056b3; 
+}
