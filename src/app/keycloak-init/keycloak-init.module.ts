@@ -5,7 +5,7 @@ export function initializeKeycloak(keycloak: KeycloakService, router: Router): (
   return async () => {
     await keycloak.init({
       config: {
-        realm: 'carpooling2', 
+        realm: 'Wasalni', 
         url: 'http://localhost:8080/',
         clientId: 'carpooling_id',
       },
