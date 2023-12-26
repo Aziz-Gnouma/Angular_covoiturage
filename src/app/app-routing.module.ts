@@ -8,7 +8,6 @@ import { ListCovComponent } from './driver_dash/list-cov/list-cov.component';
 import { CreateCovComponent } from './driver_dash/create-cov/create-cov.component';
 import { UpdateCovComponent } from './driver_dash/update-cov/update-cov.component';
 import { ReservationsComponent } from './driver_dash/reservations/reservations.component';
-import { SignupComponent } from './signup/signup.component';
 
 import { DashadminComponent } from './admin/dashadmin/dashadmin.component';
 import { ListDriverComponent } from './admin/list_driver/list-driver.component';
@@ -25,7 +24,7 @@ const routes: Routes = [
     { path: 'list', component: ListCovComponent, canActivate: [AuthGuard] },
     { path: 'Add', component: CreateCovComponent, canActivate: [AuthGuard] },
     { path: 'Update-cov/:id', component: UpdateCovComponent, canActivate: [AuthGuard] },
-    { path: 'signup', component: SignupComponent },
+
     { path: 'dashadmin', component: DashadminComponent, canActivate: [AuthGuard] },
     { path: 'listdriver', component: ListDriverComponent, canActivate: [AuthGuard] },
     { path: 'listclient', component: ListClientComponent, canActivate: [AuthGuard] },
