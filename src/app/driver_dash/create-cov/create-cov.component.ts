@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { cov } from '../../cov';
 import { CovoiturageService } from '../../covoiturage.service';
 import { Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 @Component({
   selector: 'app-create-cov',
   templateUrl: './create-cov.component.html',
@@ -18,7 +19,7 @@ export class CreateCovComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private CovoiturageService: CovoiturageService,
-    private router: Router
+    private router: Router , private keycloak: KeycloakService
   ) {
     
     this.prodForm = this.formBuilder.group({
@@ -41,11 +42,11 @@ export class CreateCovComponent implements OnInit {
     const covoiturageData = { ...this.prodForm.value, iddriver: this.driverId };
 
     this.CovoiturageService.createCovoiturage(covoiturageData).subscribe(
-      data => {
+      (data: any) => {
         console.log(data);
         this.goToECovoiturageList();
       },
-      error => console.log(error)
+      (error: any) => console.log(error)
     );
   }
   
@@ -59,5 +60,12 @@ export class CreateCovComponent implements OnInit {
       console.log(this.prodForm.value)
       this.saveCovoiturage();
     //}
+  }
+  logout(): void {
+   
+    this.keycloak.clearToken();
+    
+ 
+    this.keycloak.logout('http://localhost:4200/'); 
   }
 }

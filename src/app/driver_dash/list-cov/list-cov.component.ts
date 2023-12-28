@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CovoiturageService } from '../../covoiturage.service';
 import { Router } from '@angular/router';
 import { cov } from '../../cov';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { KeycloakService } from 'keycloak-angular';
 
 
 @Component({
@@ -29,7 +29,9 @@ export class ListCovComponent implements OnInit {
 
 
 
-  constructor(private CovoiturageService: CovoiturageService, private router: Router,   
+  constructor(private CovoiturageService: CovoiturageService, 
+    private router: Router,  
+    private keycloak: KeycloakService
   ) {}
 
   ngOnInit(): void {
@@ -40,17 +42,17 @@ export class ListCovComponent implements OnInit {
 
 
   private getCovoiturages() {
-    this.CovoiturageService.getCovoituragesList().subscribe(data => {
+    this.CovoiturageService.getCovoituragesList().subscribe((data: cov[]) => {
       this.covs = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
       
       this.p = 1;
     });
-    this.CovoiturageService.getUsersList().subscribe(data => {
+    this.CovoiturageService.getUsersList().subscribe((data: any) => {
       this.users=data;
       console.log('users',this.users);});
 
-      this.CovoiturageService.getReservationsEtat().subscribe(data => {
+      this.CovoiturageService.getReservationsEtat().subscribe((data: any[]) => {
         this.res = data;
         console.log('res',this.res);
       this.combineData();
@@ -98,7 +100,7 @@ combineData() {
 
   
    getCOUNT( id: number) {
-    this.CovoiturageService.getReservationsCount(id).subscribe(data => {
+    this.CovoiturageService.getReservationsCount(id).subscribe((data: any) => {
       console.log(data)
       return data ;
       
@@ -113,14 +115,14 @@ combineData() {
   }
 
   deleteCovoiturage(id: number) {
-    this.CovoiturageService.deleteCovoiturage(id).subscribe(data => {
+    this.CovoiturageService.deleteCovoiturage(id).subscribe((data: any) => {
       console.log(data);
       this.getCovoiturages();
     });
   }
 
   getCovoituragesbyNom(nom: string) {
-    this.CovoiturageService.getCovoituragetByNom(nom).subscribe(data => {
+    this.CovoiturageService.getCovoituragetByNom(nom).subscribe((data: any) => {
       //this.covs = data;
     });
   }
@@ -130,6 +132,12 @@ combineData() {
     const productDate = new Date(prodDate);
     return productDate > currentDate;
   }
-
+  logout(): void {
+   
+    this.keycloak.clearToken();
+    
+ 
+    this.keycloak.logout('http://localhost:4200/'); 
+  }
   
 }

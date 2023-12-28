@@ -46,6 +46,7 @@ async function checkRoles(keycloak: KeycloakService, router: Router): Promise<vo
     }
   }
   
+  
   function extractRolesFromToken(token: string): string[] {
     const decodedToken: any = decodeToken(token);
     return decodedToken?.realm_access?.roles || [];
@@ -58,5 +59,9 @@ async function checkRoles(keycloak: KeycloakService, router: Router): Promise<vo
       console.error('Error decoding token:', e);
       return null;
     }
+
+
+
+
   }
   

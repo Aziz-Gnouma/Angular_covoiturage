@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivate } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from '../keycloak-init/keycloak-init.module';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,4 +25,5 @@ export class AuthGuard implements CanActivate {
       return initializeKeycloak(this.keycloak, this.router)().then(() => this.router.createUrlTree(['/']));
     }
   }
+  
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 import { cov } from 'src/app/cov';
 import { CovoiturageService } from 'src/app/covoiturage.service';
 
@@ -12,7 +13,7 @@ export class ListCoviComponent {
   drivers: any[] = []; // Liste des conducteurs
   participants: any[] = [];
 
-  constructor(private covoiturageService: CovoiturageService) { }
+  constructor(private covoiturageService: CovoiturageService , private keycloak: KeycloakService) { }
 
   ngOnInit(): void {
     this.getCovoiturages();
@@ -111,5 +112,8 @@ export class ListCoviComponent {
         }
       );
     }
+  }
+  logout(): void {
+    this.keycloak.logout();
   }
 }

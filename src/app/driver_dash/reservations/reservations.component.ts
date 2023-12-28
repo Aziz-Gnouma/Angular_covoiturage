@@ -3,6 +3,7 @@ import { CovoiturageService } from '../../covoiturage.service';
 import { Router } from '@angular/router';
 import { reservation } from '../../reservation';
 import { MdbModalService, MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-reservations',
@@ -28,7 +29,9 @@ matchingCovoiturage: any;
 matchingUser:any;
   
 
-  constructor(private CovoiturageService: CovoiturageService, private router: Router ) {}
+  constructor(private CovoiturageService: CovoiturageService, 
+    private router: Router, 
+    private keycloak: KeycloakService ) {}
 
   ngOnInit(): void {
     this.getreservations();
@@ -52,7 +55,7 @@ matchingUser:any;
         // Update your UI accordingly
         console.log(carpoolingData.date);
       },
-      (error) => {
+      (error: any) => {
         console.error('Error fetching carpooling information', error);
       }
     );
@@ -68,7 +71,7 @@ matchingUser:any;
 
 
   private getreservations() {
-    this.CovoiturageService.getResrvationsList().subscribe(data => {
+    this.CovoiturageService.getResrvationsList().subscribe((data: any[]) => {
       this.res = data;
   
       // Declare an array to store dynamic data
@@ -91,11 +94,11 @@ matchingUser:any;
   
       this.p = 1;
     });
-    this.CovoiturageService.getUsersList().subscribe(data => {
+    this.CovoiturageService.getUsersList().subscribe((data: any) => {
       this.users=data;
       console.log('users',this.users);});
       
-    this.CovoiturageService.getCovoituragesList().subscribe(data => {
+    this.CovoiturageService.getCovoituragesList().subscribe((data: any[]) => {
       this.ok=data;
       console.log('cov',this.ok);
 
@@ -139,7 +142,7 @@ matchingUser:any;
   
  
   deleteReservation(id: number) {
-    this.CovoiturageService.deleteReservation(id).subscribe(data => {
+    this.CovoiturageService.deleteReservation(id).subscribe((data: any) => {
       console.log(data);
       this.getreservations(); // Correction ici
     });
@@ -153,11 +156,11 @@ matchingUser:any;
       const queryParams = `email=${email}&nameClient=${nameClient}&idCovoiturage=${idCovoiturage}`;
   
       this.CovoiturageService.sendEmail(queryParams).subscribe(
-        (response) => {
+        (response: any) => {
           console.log('Email sent successfully', response);
           // Add logic to update etat carpooling if needed
         },
-        (error) => {
+        (error: any) => {
           console.error('Error sending email', error);
           // Log the error details for debugging
         }
@@ -167,7 +170,13 @@ matchingUser:any;
     }
   }
   
-  
+  logout(): void {
+   
+    this.keycloak.clearToken();
+    
+ 
+    this.keycloak.logout('http://localhost:4200/'); 
+  }
   
  
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 import { CovoiturageService } from 'src/app/covoiturage.service';
 import { user } from 'src/app/user';
 
@@ -10,7 +11,7 @@ import { user } from 'src/app/user';
 export class ListDriverComponent {
   drivers: user[] = []; // Déclaration d'une variable pour stocker la liste des conducteurs
 
-  constructor(private covoiturageService: CovoiturageService) {}
+  constructor(private covoiturageService: CovoiturageService,private keycloak: KeycloakService) {}
 
   ngOnInit() {
     this.getDrivers(); // Appel de la méthode pour récupérer les conducteurs au chargement du composant
@@ -21,7 +22,7 @@ export class ListDriverComponent {
       (data: user[]) => {
         this.drivers = data;
       },
-      (error) => {
+      (error: any) => {
         console.log(error);
         // Gérer les erreurs de requête
       }
@@ -35,7 +36,7 @@ export class ListDriverComponent {
           // Suppression réussie : Mettez à jour la liste des conducteurs après la suppression
           this.getUpdatedDriversList();
         },
-        error => {
+        (  error: any) => {
           console.log('Error deleting driver:', error);
           // Gérer les erreurs de suppression
         }
@@ -47,10 +48,13 @@ export class ListDriverComponent {
       (data: user[]) => {
         this.drivers = data; 
       },
-      (error) => {
+      (error: any) => {
         console.log(error);
         // Gérer les erreurs de requête
       }
     );
+  }
+  logout(): void {
+    this.keycloak.logout();
   }
 }

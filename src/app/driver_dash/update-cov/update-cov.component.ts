@@ -3,6 +3,7 @@ import { cov } from '../../cov';
 import { CovoiturageService } from '../../covoiturage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { KeycloakService } from 'keycloak-angular';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class UpdateCovComponent implements OnInit {
   constructor(private CovoiturageService: CovoiturageService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute ,
-    private router: Router) {
+    private router: Router , private keycloak: KeycloakService) {
 
       this.prodForm = this.formBuilder.group({
         ok: ['', Validators.required], 
@@ -30,20 +31,27 @@ export class UpdateCovComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
 
-    this.CovoiturageService.getCovoiturageById(this.id).subscribe(data => {
+    this.CovoiturageService.getCovoiturageById(this.id).subscribe((data: cov) => {
       console.log(data);
       this.cov = data;
-    }, error => console.log(error));
+    }, (error: any) => console.log(error));
   }
 
   onSubmit(){
    
-    this.CovoiturageService.updateCovoiturage(this.id, this.cov).subscribe( data =>{
+    this.CovoiturageService.updateCovoiturage(this.id, this.cov).subscribe( (data: any) =>{
       this.goToProdList();
     }
-    , error => console.log(error));
+    , (error: any) => console.log(error));
   }
 
+  logout(): void {
+   
+    this.keycloak.clearToken();
+    
+ 
+    this.keycloak.logout('http://localhost:4200/'); 
+  }
   goToProdList(){
     this.router.navigate(['list']);
   }
