@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
+import { KeycloakService } from 'keycloak-angular';
+
 
 @Component({
   selector: 'app-list-cov',
@@ -26,37 +28,56 @@ export class ListCovComponent implements OnInit {
 
   res: any[] = [];
   aziz: any;
+  IDdriver: string | undefined;
 
 
 
-  constructor(private CovoiturageService: CovoiturageService, private router: Router,   
+  constructor(private keycloakService: KeycloakService , private CovoiturageService: CovoiturageService, private router: Router,   
   ) {}
 
+  get isAuthenticated(): boolean {
+      return this.keycloakService.isLoggedIn();
+  }
   ngOnInit(): void {
     this.getCovoiturages();
   
-
+    this.getUsername();
+  }
+  
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.IDdriver = profile.id;
+      if (this.IDdriver) {
+        this.getCovoiturages();
+      } else {
+        // Handle the case where IDdriver is undefined
+        console.error('IDdriver is undefined');
+      }
+    });
   }
 
-
-  private getCovoiturages() {
-    this.CovoiturageService.getCovoituragesList().subscribe(data => {
+private getCovoiturages() {
+  if (this.IDdriver) {
+    this.CovoiturageService.getCovoituragesListByIdDriver(this.IDdriver).subscribe(data => {
       this.covs = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  
-      
       this.p = 1;
     });
+
     this.CovoiturageService.getUsersList().subscribe(data => {
-      this.users=data;
-      console.log('users',this.users);});
+      this.users = data;
+      console.log('users', this.users);
+    });
 
-      this.CovoiturageService.getReservationsEtat().subscribe(data => {
-        this.res = data;
-        console.log('res',this.res);
+    this.CovoiturageService.getReservationsEtat().subscribe(data => {
+      this.res = data;
+      console.log('res', this.res);
       this.combineData();
-
       console.log('Combined Data:', this.combinedData);
-  })
+    });
+  } else {
+    // Handle the case where IDdriver is undefined
+    console.error('IDdriver is undefined');
+  }
 }
 
 
@@ -77,6 +98,8 @@ combineData() {
         idcov: reservation.carpoolingID,
         departcovoiturage: matchingCovoiturage.depart,
         destcovoiturage: matchingCovoiturage.destination,
+        dhcovoiturage: matchingCovoiturage.heureDepart,
+        dacovoiturage: matchingCovoiturage.heureArrive,
         datecovoiturage: matchingCovoiturage.date,
         clientName: matchingUser.name,
         clientEmail: matchingUser.email,
@@ -127,9 +150,15 @@ combineData() {
 
   isDateValid(prodDate: Date | string): boolean {
     const currentDate = new Date();
-    const productDate = new Date(prodDate);
-    return productDate > currentDate;
-  }
+    
+    // Parse the date string in the format "DD-MM-YYYY"
+    const [day, month, year] = (typeof prodDate === 'string' ? prodDate : '').split('-');
+    const productDate = new Date(`${year}-${month}-${day}`);
 
+    console.log('Current Date:', currentDate);
+    console.log('Product Date:', productDate);
+
+    return !isNaN(productDate.getTime()) && productDate >= currentDate;
+}
   
 }

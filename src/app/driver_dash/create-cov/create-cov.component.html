@@ -202,7 +202,37 @@
             <div style="margin-left: 80%;" *ngIf="prodForm.get('date')?.invalid && (prodForm.get('date')?.dirty || prodForm.get('date')?.touched)" class="text-warning">
               <ng-container *ngIf="prodForm.get('date')?.hasError('required')">Date is required.</ng-container>
             </div>
-            
+            <div class="setting-item">
+              <div class="row g-2">
+                <div class="col-md-5">
+                  <h6 style="color: black; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;" >Date depart :</h6>
+                </div>
+                <div class="col-md">
+                  <label for="date">Date depart </label>
+                  <input type="text" class="form-control" id="heureDepart" name="heureDepart" formControlName="heureDepart">
+                </div>
+              </div>
+            </div>
+            <!-- Display error messages for the "date" field -->
+            <div style="margin-left: 80%;" *ngIf="prodForm.get('heureDepart')?.invalid && (prodForm.get('heureDepart')?.dirty || prodForm.get('heureDepart')?.touched)" class="text-warning">
+              <ng-container *ngIf="prodForm.get('heureDepart')?.hasError('required')">Date depart  is required.</ng-container>
+            </div>
+
+            <div class="setting-item">
+              <div class="row g-2">
+                <div class="col-md-5">
+                  <h6 style="color: black; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;" >heureArrive</h6>
+                </div>
+                <div class="col-md">
+                  <label for="heureArrive">heureArrive</label>
+                  <input type="text" class="form-control" id="heureArrive" name="heureArrive" formControlName="heureArrive">
+                </div>
+              </div>
+            </div>
+            <!-- Display error messages for the "date" field -->
+            <div style="margin-left: 80%;" *ngIf="prodForm.get('heureArrive')?.invalid && (prodForm.get('heureArrive')?.dirty || prodForm.get('heureArrive')?.touched)" class="text-warning">
+              <ng-container *ngIf="prodForm.get('heureArrive')?.hasError('required')">heureArrive is required.</ng-container>
+            </div>
             <div class="setting-item">
               <div class="row g-2">
                 <div class="col-md-5">

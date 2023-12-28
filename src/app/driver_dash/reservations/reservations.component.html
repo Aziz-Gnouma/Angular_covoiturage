@@ -140,13 +140,22 @@
                   <td>{{ data?.departcovoiturage }}</td>
                   <td>{{ data?.destcovoiturage }}</td>
                   <td>{{ data?.datecovoiturage }}</td>
-                  <td class="action-buttons">
-                    
-
+                  <td class="action-buttons" *ngIf="data?.Etatreservation === 1">
                     <button style="margin-left: 7%;" class="btn btn-primary" 
-                    (click)="data && onAcceptClick(data?.clientEmail, data?.idcov, data?.clientName)">Accept</button>
-                                <button style="margin-left: 7%;" class="btn btn-danger" (click)="deleteReservation(data.nomreservation)">Delete</button>
+                            (click)="data && onAcceptClick(data?.clientEmail, data?.idcov, data?.clientName, data?.nomreservation)">
+                      Accept
+                    </button>
+                    
+                    <button style="margin-left: 7%;" class="btn btn-danger" 
+                            (click)="deleteReservation(data.nomreservation)">
+                      Delete
+                    </button>
                   </td>
+                  
+                  <td *ngIf="data?.Etatreservation !== 1">
+                    <p style="color: rgb(19, 115, 115); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-shadow: #000000;">Reservation accepted.</p>
+                  </td>
+                  
                 </tr>
               
             </tbody>

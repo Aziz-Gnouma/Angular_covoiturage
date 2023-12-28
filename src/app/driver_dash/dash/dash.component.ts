@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CovoiturageService } from '../../covoiturage.service';
 import { cov } from 'src/app/cov';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-dash',
@@ -11,15 +12,31 @@ export class DashComponent implements OnInit {
    ok: any ;
    ok2: any;
    ok3:any;
-  constructor(private CovoiturageService: CovoiturageService) {}
+   username: string | undefined; // Replace 'undefined' with the actual type if known
+   constructor(private keycloakService: KeycloakService , private CovoiturageService: CovoiturageService) {}
 
+   get isAuthenticated(): boolean {
+    return this.keycloakService.isLoggedIn();
+  }
 
   ngOnInit(): void {
+    this.getUsername();
     this.getCovoiturages();
     console.log(this.ok);
     this.getReservation() ;
     this.getReservationAnnuled() ;
   }
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
+  logout(): void {
+    const redirectUri = window.location.origin + '/'; // Use the correct path
+    this.keycloakService.logout(redirectUri);
+  }
+ 
+  
 
   private getCovoiturages() {
     this.CovoiturageService.counts().subscribe(data => {
