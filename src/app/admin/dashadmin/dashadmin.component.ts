@@ -14,6 +14,10 @@ export class DashadminComponent {
   }
 
   logout(): void {
-    this.keycloak.logout();
+   
+    this.keycloak.clearToken();
+    
+ 
+    this.keycloak.logout('http://localhost:4200/'); 
   }
 }
