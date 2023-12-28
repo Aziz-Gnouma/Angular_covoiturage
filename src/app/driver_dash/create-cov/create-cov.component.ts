@@ -70,7 +70,10 @@ export class CreateCovComponent implements OnInit {
       }
     );
   }
-
+  logout(): void {
+    const redirectUri = window.location.origin + '/'; // Use the correct path
+    this.keycloakService.logout(redirectUri);
+  }
   goToECovoiturageList() {
     this.router.navigate(['/list']);
   }

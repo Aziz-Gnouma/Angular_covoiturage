@@ -170,7 +170,10 @@ getUsername(): void {
     console.log('Combined Data:', this.combinedData);
   }
   
-  
+  logout(): void {
+    const redirectUri = window.location.origin + '/'; // Use the correct path
+    this.keycloakService.logout(redirectUri);
+  }
   
   
   

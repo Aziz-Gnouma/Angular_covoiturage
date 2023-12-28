@@ -128,7 +128,10 @@ combineData() {
     });
   }
 
-  
+  logout(): void {
+    const redirectUri = window.location.origin + '/'; // Use the correct path
+    this.keycloakService.logout(redirectUri);
+  }
 
 
   updateCovoiturage(id: number) {
