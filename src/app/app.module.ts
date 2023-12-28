@@ -13,7 +13,7 @@ import { ListCovComponent } from './driver_dash/list-cov/list-cov.component';
 import { CreateCovComponent } from './driver_dash/create-cov/create-cov.component';
 import { UpdateCovComponent } from './driver_dash/update-cov/update-cov.component';
 import { ReservationsComponent } from './driver_dash/reservations/reservations.component';
-import { DatePipe } from '@angular/common';
+
 
 
 import { DashadminComponent } from './admin/dashadmin/dashadmin.component';
@@ -49,7 +49,7 @@ import { KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
     KeycloakAngularModule,
   ],
   providers: [
-    DatePipe,
+   
   ],
   bootstrap: [AppComponent],
 })

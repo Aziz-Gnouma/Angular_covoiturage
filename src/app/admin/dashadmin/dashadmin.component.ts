@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-dashadmin',
@@ -6,10 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashadmin.component.css']
 })
 export class DashadminComponent {
-  constructor() {}
+  constructor(private keycloak: KeycloakService) {}
 
   ngOnInit(): void {
-    // Les actions d'initialisation nécessaires pour le dashboard admin
+   
   }
 
+  logout(): void {
+   
+    this.keycloak.clearToken();
+    
+ 
+    this.keycloak.logout('http://localhost:4200/'); 
+  }
 }
