@@ -6,7 +6,7 @@ import { initializeKeycloak } from '../keycloak-init/keycloak-init.module';
 @Component({
   selector: 'app-acceuil',
   templateUrl: './acceuil.component.html',
-  styleUrls: ['./acceuil.component.css'],
+  styleUrls: ['assets/css/JiSlider.css', 'assets/css/bootstrap.css', 'assets/css/flexslider.css', 'assets/css/font-awesome.css', 'assets/css/style.css']
 })
 export class AcceuilComponent implements OnInit {
   constructor(private keycloak: KeycloakService, private router: Router) {}
