@@ -13,6 +13,7 @@ import { ListCovComponent } from './driver_dash/list-cov/list-cov.component';
 import { CreateCovComponent } from './driver_dash/create-cov/create-cov.component';
 import { UpdateCovComponent } from './driver_dash/update-cov/update-cov.component';
 import { ReservationsComponent } from './driver_dash/reservations/reservations.component';
+import { Client_acceuilComponent } from './client_espace/client_acceuil/client_acceuil.component';
 
 
 
@@ -32,7 +33,7 @@ import { KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
     CreateCovComponent,
     UpdateCovComponent,
     ReservationsComponent,
-  
+    Client_acceuilComponent,
 
     DashadminComponent,
     ListDriverComponent,
