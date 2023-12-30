@@ -87,18 +87,22 @@
             <thead >
                 <tr>
                     
-                    <th ><i style="color: green; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Depart</i>
-                    </th>
-                    <th><i style="color: green;font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Destination</i></th>
-                    <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Description</th>
-                    <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Bagage</th>
-                    <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Téléphone</th>
-                    <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Prix</th>
-                    <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Place</th>
-                    <th> <i style="color: red; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Place Reserved</i></th>
-                    <th> <i style="color: rgb(32, 0, 128); font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Date</i></th>
-                    <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Actions</th>
-                </tr>
+                  <th ><i style="color: green; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Depart</i>
+                  </th>
+                  <th><i style="color: green;font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Destination</i></th>
+                  
+                  <th><i style="color: rgb(21, 0, 128);font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Heure depart</i></th>
+                  <th><i style="color: rgb(21, 0, 128);font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Heur Arrive</i></th>
+
+
+                  <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Bagage</th>
+                  <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Téléphone</th>
+                  <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Prix</th>
+                  <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Place</th>
+                  <th> <i style="color: red; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Place Reserved</i></th>
+                  <th> <i style="color: rgb(32, 0, 128); font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Date</i></th>
+                  <th style="font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">Actions</th>
+             </tr>
             </thead> <br>
             
             <tbody class="table-group-divider" *ngFor="let Prod of covs | paginate: { itemsPerPage: 10, currentPage: p }">
@@ -106,10 +110,11 @@
                 
                 <td>{{ Prod.depart }}</td>
                 <td>{{ Prod.destination }}</td>
-                <td>{{ Prod.description }}</td>
+                <td>{{ Prod.heureDepart }}</td>
+                <td>{{ Prod.heureArrive }}</td>
                 <td>{{ Prod.bagage }}</td>
                 <td>{{ Prod.phone }}</td>
-                <td>{{ Prod.price }}</td>
+                <td>{{ Prod.price }} DT</td>
                 <td>{{ Prod.place }}</td>
                 <td>
                   <div class="btn-group">

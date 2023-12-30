@@ -22,7 +22,11 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets2",
+              "src/app/acceuil/assets",
+              "src/app/driver_dash/assets"
+
             ],
             "styles": [
               

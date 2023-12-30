@@ -1,6 +1,6 @@
 export class cov {
     id!: number;
-    idriver!: number;
+    driver!: String;
     driverName!: string;
     depart!: string;
     destination!: string;
@@ -10,6 +10,8 @@ export class cov {
     marque!: string;
     price!: number;
     place!: number;
+    heureDepart!:String;
+    heureArrive!:String;
     date!:Date;
     totalReservations!:number;
   reservations: any;

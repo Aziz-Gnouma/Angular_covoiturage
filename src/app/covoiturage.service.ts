@@ -24,6 +24,11 @@ export class CovoiturageService {
     return this.httpClient.get<cov[]>(`${this.baseURL}`);
   }
 
+  getCovoituragesListByIdDriver(idDriver: string): Observable<cov[]> {
+    const url = `${this.FURL}covoituragesDriver/${idDriver}`;
+    return this.httpClient.get<cov[]>(url);
+  }
+
   getResrvationsList(): Observable<cov[]>{
     return this.httpClient.get<cov[]>(`${this.RURL}`);
   }
@@ -66,6 +71,11 @@ export class CovoiturageService {
       return new Observable<Object>();
     }
   }
+  updateReservation(id: number, reservation: reservation): Observable<any> {
+    const url = `${this.RURL}Driver/${id}?etat=${reservation.etat}`;
+
+    return this.httpClient.put(url, reservation);
+  }
 
   deleteReservation(id: number): Observable<Object>{
     const confirmed = confirm("deleted reservation !");
@@ -78,6 +88,8 @@ export class CovoiturageService {
   getCovoituragetByNom(nom: string): Observable<cov>{
     return this.httpClient.get<cov>(`${this.FURL}/${nom}`);
   }
+
+  
 
   counts(): Observable<cov>{
     return this.httpClient.get<cov>(`${this.FURL}count`);

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CovoiturageService } from '../../covoiturage.service';
 import { Router } from '@angular/router';
 import { cov } from '../../cov';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 import { KeycloakService } from 'keycloak-angular';
 
 
@@ -26,39 +28,56 @@ export class ListCovComponent implements OnInit {
 
   res: any[] = [];
   aziz: any;
+  IDdriver: string | undefined;
 
 
 
-  constructor(private CovoiturageService: CovoiturageService, 
-    private router: Router,  
-    private keycloak: KeycloakService
+  constructor(private keycloakService: KeycloakService , private CovoiturageService: CovoiturageService, private router: Router,   
   ) {}
 
+  get isAuthenticated(): boolean {
+      return this.keycloakService.isLoggedIn();
+  }
   ngOnInit(): void {
     this.getCovoiturages();
   
-
+    this.getUsername();
+  }
+  
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.IDdriver = profile.id;
+      if (this.IDdriver) {
+        this.getCovoiturages();
+      } else {
+        // Handle the case where IDdriver is undefined
+        console.error('IDdriver is undefined');
+      }
+    });
   }
 
-
-  private getCovoiturages() {
-    this.CovoiturageService.getCovoituragesList().subscribe((data: cov[]) => {
+private getCovoiturages() {
+  if (this.IDdriver) {
+    this.CovoiturageService.getCovoituragesListByIdDriver(this.IDdriver).subscribe(data => {
       this.covs = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  
-      
       this.p = 1;
     });
-    this.CovoiturageService.getUsersList().subscribe((data: any) => {
-      this.users=data;
-      console.log('users',this.users);});
 
-      this.CovoiturageService.getReservationsEtat().subscribe((data: any[]) => {
-        this.res = data;
-        console.log('res',this.res);
+    this.CovoiturageService.getUsersList().subscribe(data => {
+      this.users = data;
+      console.log('users', this.users);
+    });
+
+    this.CovoiturageService.getReservationsEtat().subscribe(data => {
+      this.res = data;
+      console.log('res', this.res);
       this.combineData();
-
       console.log('Combined Data:', this.combinedData);
-  })
+    });
+  } else {
+    // Handle the case where IDdriver is undefined
+    console.error('IDdriver is undefined');
+  }
 }
 
 
@@ -79,6 +98,8 @@ combineData() {
         idcov: reservation.carpoolingID,
         departcovoiturage: matchingCovoiturage.depart,
         destcovoiturage: matchingCovoiturage.destination,
+        dhcovoiturage: matchingCovoiturage.heureDepart,
+        dacovoiturage: matchingCovoiturage.heureArrive,
         datecovoiturage: matchingCovoiturage.date,
         clientName: matchingUser.name,
         clientEmail: matchingUser.email,
@@ -100,14 +121,17 @@ combineData() {
 
   
    getCOUNT( id: number) {
-    this.CovoiturageService.getReservationsCount(id).subscribe((data: any) => {
+    this.CovoiturageService.getReservationsCount(id).subscribe(data => {
       console.log(data)
       return data ;
       
     });
   }
 
-  
+  logout(): void {
+    const redirectUri = window.location.origin + '/'; // Use the correct path
+    this.keycloakService.logout(redirectUri);
+  }
 
 
   updateCovoiturage(id: number) {
@@ -115,29 +139,29 @@ combineData() {
   }
 
   deleteCovoiturage(id: number) {
-    this.CovoiturageService.deleteCovoiturage(id).subscribe((data: any) => {
+    this.CovoiturageService.deleteCovoiturage(id).subscribe(data => {
       console.log(data);
       this.getCovoiturages();
     });
   }
 
   getCovoituragesbyNom(nom: string) {
-    this.CovoiturageService.getCovoituragetByNom(nom).subscribe((data: any) => {
+    this.CovoiturageService.getCovoituragetByNom(nom).subscribe(data => {
       //this.covs = data;
     });
   }
 
   isDateValid(prodDate: Date | string): boolean {
     const currentDate = new Date();
-    const productDate = new Date(prodDate);
-    return productDate > currentDate;
-  }
-  logout(): void {
-   
-    this.keycloak.clearToken();
     
- 
-    this.keycloak.logout('http://localhost:4200/'); 
-  }
+    // Parse the date string in the format "DD-MM-YYYY"
+    const [day, month, year] = (typeof prodDate === 'string' ? prodDate : '').split('-');
+    const productDate = new Date(`${year}-${month}-${day}`);
+
+    console.log('Current Date:', currentDate);
+    console.log('Product Date:', productDate);
+
+    return !isNaN(productDate.getTime()) && productDate >= currentDate;
+}
   
 }
