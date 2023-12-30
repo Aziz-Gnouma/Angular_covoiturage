@@ -8,7 +8,7 @@ export interface User {
     token : string ;
 }
 export interface Register {
-    id: number;
+    id: string;
     password: string;
     name: string;
     email: string;

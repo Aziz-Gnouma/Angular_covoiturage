@@ -1,7 +1,11 @@
+// acceuil.component.ts
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
 import { Router } from '@angular/router';
 import { initializeKeycloak } from '../keycloak-init/keycloak-init.module';
+import { Register } from '../model/user.model';
+import { ApiService } from '../service/api.service';
+
 
 @Component({
   selector: 'app-acceuil',
@@ -9,21 +13,40 @@ import { initializeKeycloak } from '../keycloak-init/keycloak-init.module';
   styleUrls: ['./acceuil.component.css'],
 })
 export class AcceuilComponent implements OnInit {
-  constructor(private keycloak: KeycloakService, private router: Router) {}
+  userInformation: Register | undefined;
 
-  async ngOnInit(): Promise<void> {
-  
-  }
+  constructor(private keycloak: KeycloakService, private router: Router , private authService : ApiService) {}
+
+  async ngOnInit(): Promise<void> {}
+
   async initKeycloak(): Promise<void> {
-    
     await initializeKeycloak(this.keycloak, this.router)();
     const userDetails = await this.keycloak.loadUserProfile();
-    console.log('User Details:', userDetails);
 
+    const userId = userDetails?.id;
+    const userEmail = userDetails?.email;
+    const userName = userDetails?.username;
 
     const roles = this.keycloak.getUserRoles();
 
-    
+    this.userInformation = {
+      id: userId || '',
+      password: '', 
+      name: userName || '',
+      email: userEmail || '',
+      roleName: roles.length > 0 ? roles[0] : '', 
+    };
+
+    console.log('User Information:', this.userInformation);
+    this.authService.signUp(this.userInformation).subscribe(
+      (response) => {
+        console.log('Inscription réussie:', response);
+      },
+      (error) => {
+        console.error('Erreur lors de linscription:', error);
+      }
+    );
+
     if (roles.includes('ADMIN')) {
       this.router.navigate(['/dashadmin']);
     } else if (roles.includes('DRIVER')) {
@@ -31,9 +54,7 @@ export class AcceuilComponent implements OnInit {
     } else if (roles.includes('CLIENT')) {
       this.router.navigate(['/reservation']);
     } else {
-     
       this.router.navigate(['/']);
     }
   }
- 
 }
