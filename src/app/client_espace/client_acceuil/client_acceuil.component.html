@@ -1,103 +1,88 @@
 <div id="main">
+  <div id="hi">
     <div id="navbar">
-      <h1 id="tawsilatext">
-        <a href="http://localhost:4200/Client_accueil" class="tawsila-link">
-          tawsila
-        </a>
-      </h1>
-      <div id="firstnavblock">
-        
-          <h4>
-              <a href="">  
-              covoiturage
-          </a>
-          </h4>
+
    
-    
-          <h4>
-              <a href="">
-              bus
-          </a>
-          </h4>
-       
-      
-          <h4>
-              <a href="">
-              covoiturage du cotidien
-          </a>
-          </h4>
-      
+    <h1 id="tawsilatext">
+      <a href="" class="tawsila-link"> tawsila </a>
+    </h1>
+    <div id="firstnavblock">
+      <h4>
+        <a href=""> mes covoiturages </a>
+      </h4>
+    </div>
+    <div id="secondnavblock">
+      <div id="helloClient" [style.color]="textColor">
+        <h4>
+          <a href="" [class.unclickable]="true"> hello {{client?.name}} </a>
+        </h4>
       </div>
-      <div id="secondnavblock">
-   
-          <h4>
-              <a href="">
-              covoiturage
-          </a>
-          </h4>
-  
+      
+      
+      <h3 class="timeDate"><a href=""  [class.unclickable]="true"> date: {{ currentDate }} </a></h3>
      
-          <h4>
-              <a href="">
-              bus
-          </a>
-          </h4>
-   
-        <img src="" alt="" id="iconNav" />
-      </div>
-    </div>
-    <div id="firstphoto">
-      <img
-        src="../../../assets/assets/img/client_accueil/Capture.PNG"
-        alt=""
-        id="firstphoto1"
-      />
-    </div>
-    <div id="forumRecherche">
-      <form>
-        <input
-          type="text"
-          id="departure"
-          name="departure"
-          placeholder="Enter departure location"
-        />
-        <input
-          type="text"
-          id="destination"
-          name="destination"
-          placeholder="Enter destination location"
-        />
-        <input type="date" id="date" name="date" />
-        <button type="button" class="search-btn">Search</button>
-      </form>
-    </div>
-    <div id="content">
-      <div class="content-item">
-        <img src="../../../assets/assets/img/client_accueil/photo1.PNG" alt="Photo 1" />
-        <div class="text-content">
-          <p>
-            100 € de Prime Covoiturage sur BlaBlaCar jusqu’au 31/12/2023 !
-            <br />Conducteurs, conductrices, bénéficiez de la Prime Covoiturage
-            avant qu’il ne soit trop tard en réalisant 3 covoiturages en 3 mois,
-            sous conditions d'éligibilité.
-          </p>
-          <button type="button" class="buttont">en savoir plus</button>
-        </div>
-      </div>
-  
-      <div class="content-item">
-        <div class="text-content">
-          <p>
-            Doublez votre Prime Covoiturage de 100 € avec BlaBlaCar Daily Vous
-            prenez la route tous les jours ? Bonne nouvelle ! Recevez 100 € de
-            Prime Covoiturage en covoiturant 10 trajets en 3 mois* avec BlaBlaCar
-            Daily. <br />
-            * Valable à partir du 1er Janvier 2023 sous conditions d'éligibilité.
-          </p>
-          <button type="button" class="buttont">decouvrir tawsila Daily</button>
-        </div>
-        <img src="../../../assets/assets/img/client_accueil/photo2.PNG" alt="Photo 2" />
-      </div>
+      <h3 class="timeDate"><a href=""  [class.unclickable]="true"> time: {{ currentTime }} </a></h3>
+
     </div>
   </div>
-  
+  </div>
+  <div id="firstphoto">
+    <img
+      src="../../../assets/assets/img/client_accueil/Capture.PNG"
+      alt=""
+      id="firstphoto1"
+    />
+  </div>
+  <div id="forumRecherche">
+    <form>
+      <input
+        type="text"
+        id="departure"
+        name="departure"
+        placeholder="Enter departure location"
+      />
+      <input
+        type="text"
+        id="destination"
+        name="destination"
+        placeholder="Enter destination location"
+      />
+      <input type="date" id="date" name="date" />
+      <button type="button" class="search-btn">Search</button>
+    </form>
+  </div>
+  <div id="content">
+    <div class="content-item">
+      <img
+        src="../../../assets/assets/img/client_accueil/photo1.PNG"
+        alt="Photo 1"
+      />
+      <div class="text-content">
+        <p>
+          100 € de Prime Covoiturage sur BlaBlaCar jusqu’au 31/12/2023 !
+          <br />Conducteurs, conductrices, bénéficiez de la Prime Covoiturage
+          avant qu’il ne soit trop tard en réalisant 3 covoiturages en 3 mois,
+          sous conditions d'éligibilité.
+        </p>
+        <button type="button" class="buttont">en savoir plus</button>
+      </div>
+    </div>
+
+    <div class="content-item">
+      <div class="text-content">
+        <p>
+          Doublez votre Prime Covoiturage de 100 € avec BlaBlaCar Daily Vous
+          prenez la route tous les jours ? Bonne nouvelle ! Recevez 100 € de
+          Prime Covoiturage en covoiturant 10 trajets en 3 mois* avec BlaBlaCar
+          Daily. <br />
+          * Valable à partir du 1er Janvier 2023 sous conditions d'éligibilité.
+        </p>
+        <button type="button" class="buttont">decouvrir tawsila Daily</button>
+      </div>
+      <img
+        src="../../../assets/assets/img/client_accueil/photo2.PNG"
+        alt="Photo 2"
+      />
+    </div>
+  </div>
+</div>

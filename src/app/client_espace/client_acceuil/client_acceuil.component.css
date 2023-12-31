@@ -16,15 +16,15 @@ body {
 background-color: white;
 display: flex; /* Use flexbox to create a horizontal layout */
 align-items: center; /* Center items vertically within the flex container */
-
+margin-bottom: 10px;
+padding-top: 10px;
 }
 #navbar h4 {
     margin: 0; /* Remove default margin for img and h4 elements */
     padding: 10px; /* Add padding for spacing */
     color: #6699ff;
     text-decoration: none;
-}
-#firstphoto{
+
 }
 #firstphoto1{
  
@@ -53,23 +53,11 @@ align-items: center; /* Center items vertically within the flex container */
 }
 
 #firstnavblock {
-
     display: flex; /* Use flexbox for the blocks inside the navbar */
-    
-
-}
-#iconNav{
-
-
-
-
 }
 #secondnavblock{
     display: flex; /* Use flexbox for the blocks inside the navbar */
     margin-left: 500px;
-
-
-
 }
 
 #tawsilatext{
@@ -173,5 +161,29 @@ form {
     background-color: #2980b9;
   }
   a{
+
     text-decoration: none;
+  }
+  .unclickable {
+    pointer-events: none;
+    cursor: default;
+    color: black;
+    
+  }
+
+  .timeDate {
+    margin: 0; /* Remove default margin for img and h4 elements */
+    padding: 10px; /* Add padding for spacing */
+    color: black;
+    text-decoration: none;
+ font-size: 20px;
+  }
+
+  #helloClient {
+    border: 2px solid blue;
+ border-radius: 20px;
+  }
+  h3{
+    border: 2px solid blue;
+    border-radius: 20px;
   }
