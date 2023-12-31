@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { user } from 'src/app/user';
 import { CovoiturageService } from 'src/app/covoiturage.service';
 import { KeycloakService } from 'keycloak-angular';
-
+import { Router } from '@angular/router';
 @Component({
         selector: 'app-root',
         templateUrl: './client_acceuil.component.html',
@@ -15,7 +15,11 @@ export class Client_acceuilComponent {
     client: user | undefined; // Declare a variable to store the selected client
     clients: user[] = []; // Declare a variable to store the list of clients
     textColor: string = '';
-    constructor(private covoiturageService: CovoiturageService , private keycloak: KeycloakService) {}
+    constructor(
+        private covoiturageService: CovoiturageService,
+        private keycloak: KeycloakService,
+        private router: Router  // <-- Add this line
+      ) {}
 
     ngOnInit(): void {
       this.updateDateTime();
@@ -69,5 +73,17 @@ export class Client_acceuilComponent {
         } else {
           this.textColor = 'rgb(0, 0, 255)'; // Blue color for evening/night
         }
+      }
+      search(): void {
+        // Get the search input values
+        const departure = (document.getElementById('departure') as HTMLInputElement).value;
+        const destination = (document.getElementById('destination') as HTMLInputElement).value;
+        const date = (document.getElementById('date') as HTMLInputElement).value;
+      
+        // Navigate to the /List_cov route with query parameters
+        this.router.navigate(['/List_cov'], {
+          queryParams: { departure, destination, date },
+          queryParamsHandling: 'merge', // Add this line to merge with existing query parameters
+        });
       }
    }
