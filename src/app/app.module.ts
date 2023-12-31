@@ -6,6 +6,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { IonicModule } from '@ionic/angular';
+
+
 
 import { DashComponent } from './driver_dash/dash/dash.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
@@ -22,6 +25,7 @@ import { ListDriverComponent } from './admin/list_driver/list-driver.component';
 import { ListClientComponent } from './admin/list-client/list-client.component';
 import { ListCoviComponent } from './admin/list-covi/list-covi.component';
 import { KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
+import { List_covoiturageComponent } from './client_espace/list_covoiturage/list_covoi.component';
 
 
 @NgModule({
@@ -39,6 +43,8 @@ import { KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
     ListDriverComponent,
     ListClientComponent,
     ListCoviComponent,
+
+    List_covoiturageComponent
   ],
   imports: [
     NgxPaginationModule,
@@ -48,9 +54,10 @@ import { KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
     HttpClientModule,
     FormsModule,
     KeycloakAngularModule,
+    IonicModule,
   ],
   providers: [
-   
+
   ],
   bootstrap: [AppComponent],
 })

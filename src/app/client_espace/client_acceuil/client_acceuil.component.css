@@ -24,10 +24,9 @@ align-items: center; /* Center items vertically within the flex container */
     color: #6699ff;
     text-decoration: none;
 }
-#firstphoto{
-}
+
 #firstphoto1{
- 
+
     width:  1500px;
     background-color: black;
 }
@@ -55,7 +54,7 @@ align-items: center; /* Center items vertically within the flex container */
 #firstnavblock {
 
     display: flex; /* Use flexbox for the blocks inside the navbar */
-    
+
 
 }
 #iconNav{
@@ -95,7 +94,7 @@ align-items: center; /* Center items vertically within the flex container */
 form {
     display: flex;
     flex-wrap: wrap;
-    
+
   }
 
   input[type="text"],
