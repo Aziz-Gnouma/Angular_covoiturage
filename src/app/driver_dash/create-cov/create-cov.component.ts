@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CovoiturageService } from '../../covoiturage.service';
 import { Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
@@ -12,27 +12,27 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CreateCovComponent implements OnInit {
 
-  prodForm: FormGroup; 
+  prodForm: FormGroup;
   driver: string | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     private CovoiturageService: CovoiturageService,
     private router: Router,
-    private keycloakService: KeycloakService 
+    private keycloakService: KeycloakService
   ) {
     this.prodForm = this.formBuilder.group({
-      depart: ['', Validators.required], 
-      destination: ['', Validators.required], 
-      description: ['', Validators.required], 
-      date: ['', Validators.required], 
-      phone: ['', Validators.required], 
-      marque:['', Validators.required], 
-      heureDepart: ['', Validators.required], 
-      heureArrive:['', Validators.required], 
-      bagage: ['', Validators.required], 
-      place: ['', [Validators.required, Validators.min(1)]], 
-      price: ['', [Validators.required, Validators.min(0), Validators.max(1000)]], 
+      depart: ['', Validators.required],
+      destination: ['', Validators.required],
+      description: ['', Validators.required],
+      date: ['', Validators.required],
+      phone: ['', Validators.required],
+      marque:['', Validators.required],
+      heureDepart: ['', Validators.required],
+      heureArrive:['', Validators.required],
+      bagage: ['', Validators.required],
+      place: ['', [Validators.required, Validators.min(1)]],
+      price: ['', [Validators.required, Validators.min(0), Validators.max(1000)]],
     });
   }
 
@@ -52,7 +52,9 @@ export class CreateCovComponent implements OnInit {
       // Display a user-friendly error message or disable the submit button
       return;
     }
+    
 
+ // Ensure date is in the correct format (adjust this according to your needs)
     const covoiturageData = { ...this.prodForm.value, idDriver: String(this.driver) };
 
     this.CovoiturageService.createCovoiturage(covoiturageData).subscribe(

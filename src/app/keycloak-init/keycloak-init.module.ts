@@ -5,7 +5,7 @@ export function initializeKeycloak(keycloak: KeycloakService, router: Router): (
   return async () => {
     await keycloak.init({
       config: {
-        realm: 'Wasalni', 
+        realm: 'Wasalni',
         url: 'http://localhost:8080/',
         clientId: 'carpooling_id',
       },
@@ -17,41 +17,43 @@ export function initializeKeycloak(keycloak: KeycloakService, router: Router): (
       enableBearerInterceptor: true,
     });
 
-   
+
     await checkRoles(keycloak, router);
   };
 }
 
 async function checkRoles(keycloak: KeycloakService, router: Router): Promise<void> {
     const token: string | null = await keycloak.getToken();
-  
+
     if (token) {
       const roles: string[] = extractRolesFromToken(token);
-  
-    
+
+
       const userDetails = await keycloak.loadUserProfile();
       console.log('User Details:', userDetails);
-  
-    
+
+      console.log('User Roles:', roles); // Log the user roles
+
       if (roles.includes('DRIVER')) {
-        
+
         router.navigate(['/dash']);
       } else if (roles.includes('ADMIN')) {
-       
+
         router.navigate(['/dashadmin']);
       }else if (roles.includes('CLIENT')) {
-       
-        router.navigate(['/']);
+        console.log('Navigating to: /Client_acceuil');
+
+        router.navigate(['/Client_acceuil']);
       }
     }
   }
-  
-  
+
+
   function extractRolesFromToken(token: string): string[] {
     const decodedToken: any = decodeToken(token);
     return decodedToken?.realm_access?.roles || [];
   }
-  
+
   function decodeToken(token: string): any {
     try {
       return JSON.parse(atob(token.split('.')[1]));
@@ -64,4 +66,3 @@ async function checkRoles(keycloak: KeycloakService, router: Router): Promise<vo
 
 
   }
-  

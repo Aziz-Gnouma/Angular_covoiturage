@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { user } from 'src/app/user';
+import * as user from 'src/app/user';
 import { CovoiturageService } from 'src/app/covoiturage.service';
 import { KeycloakService } from 'keycloak-angular';
 
@@ -9,7 +9,7 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./list-client.component.css']
 })
 export class ListClientComponent {
-  clients: user[] = []; // Déclaration d'une variable pour stocker la liste des conducteurs
+  clients: user.user[] = []; // Déclaration d'une variable pour stocker la liste des conducteurs
 
   constructor(private covoiturageService: CovoiturageService , private keycloak: KeycloakService) {}
 
@@ -19,7 +19,7 @@ export class ListClientComponent {
 
   getClients(): void {
     this.covoiturageService.getClientsList().subscribe(
-      (data: user[]) => {
+      (data: user.user[]) => {
         this.clients = data;
         console.log(this.clients); // Utilisez les données récupérées selon vos besoins
       },
@@ -45,10 +45,10 @@ export class ListClientComponent {
     }
   }
   logout(): void {
-   
+
     this.keycloak.clearToken();
-    
- 
-    this.keycloak.logout('http://localhost:4200/'); 
+
+
+    this.keycloak.logout('http://localhost:4200/');
   }
 }

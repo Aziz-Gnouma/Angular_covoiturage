@@ -6,33 +6,33 @@
     <div class="nav-group show">
       <a  class="nav-label">Dashboard</a>
       <ul class="nav nav-sidebar">
-        
+
         <li class="nav-item">
           <a routerLink="/dash" class="nav-link"><i class="ri-bar-chart-2-line"></i> <span>Website Analytics</span></a>
         </li>
-       
+
       </ul>
     </div><!-- nav-group -->
     <div class="nav-group show">
       <a  class="nav-label">Tasks</a>
       <ul class="nav nav-sidebar">
-        
-       
+
+
           <li class="nav-item">
               <a routerLink="/Add" class="nav-link"><i class="ri-calendar-line"></i> <span> Add Carpooling</span></a>
             </li>
-          
+
             <li class="nav-item">
               <a routerLink="/list" class="nav-link"><i class="ri-checkbox-multiple-line"></i> <span>My Carpoolings</span></a>
             </li>
             <li class="nav-item">
               <a routerLink="/list" class="nav-link"><i class="ri-checkbox-multiple-line"></i> <span>My reservations</span></a>
             </li>
-        
-        
+
+
       </ul>
     </div><!-- nav-group -->
-   
+
   </div><!-- sidebar-body -->
 
 </div><!-- sidebar -->
@@ -45,7 +45,7 @@
     <i class="ri-search-line"></i>
   </div><!-- form-search -->
 
- 
+
   <div class="dropdown dropdown-profile ms-3 ms-xl-4">
       <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><div class="avatar online"><img src="https://via.placeholder.com/500/4c5366/fff" alt=""></div></a>
       <div class="dropdown-menu dropdown-menu-end mt-10-f">
@@ -54,10 +54,10 @@
           <h5 class="mb-1 text-dark fw-semibold">Shaira Diaz</h5>
           <p class="fs-sm text-secondary">Premium Member</p>
 
-        
+
           <hr>
           <nav class="nav">
-            
+
             <a href=""><i class="ri-user-settings-line"></i> Account Settings</a>
             <a href="#" (click)="logout()">
               <i class="ri-logout-box-r-line"></i> Log Out
@@ -78,14 +78,14 @@
       <h4 class="main-title mb-0">My Carpoolings</h4>
     </div>
 
-  
+
   </div>
 
 <div class="card card-settings" [ngStyle]="{
 'background-image': 'url(assets/img/abstract-white-modern-shape-line-curve-seamless-white-background-graphic-cover-decoration-space-your-text-creative-layout-light-design-business-cover-banner-minimal-surface-vector-illustration_599740-773.avif)',
 'background-size': 'cover',
 
-}">        
+}">
       <div class="card-body p-0">
           <form [formGroup]="prodForm" (ngSubmit)="onSubmit()">
           <div class="setting-item">
@@ -95,7 +95,7 @@
                   <h6 style="color: black; font-weight: bold; font-family: 'YourDesiredFont', sans-serif;">
                     Depart :
                   </h6>
-                  
+
                 </div>
                 <div class="col-md">
                   <label for="depart">Depart</label>
@@ -107,7 +107,7 @@
             <div style="margin-left: 80%;" *ngIf="prodForm.get('depart')?.invalid && (prodForm.get('depart')?.dirty || prodForm.get('depart')?.touched)" class="text-warning">
               <ng-container *ngIf="prodForm.get('depart')?.hasError('required')" >Depart is required.</ng-container>
             </div>
-            
+
             <div class="setting-item">
               <div class="row g-2">
                 <div class="col-md-5">
@@ -123,7 +123,7 @@
             <div style="margin-left: 80%;" *ngIf="prodForm.get('destination')?.invalid && (prodForm.get('destination')?.dirty || prodForm.get('destination')?.touched)" class="text-warning">
               <ng-container *ngIf="prodForm.get('destination')?.hasError('required')">Destination is required.</ng-container>
             </div>
-            
+
             <div class="setting-item">
               <div class="row g-2">
                 <div class="col-md-5">
@@ -139,7 +139,7 @@
             <div style="margin-left: 80%;" *ngIf="prodForm.get('description')?.invalid && (prodForm.get('description')?.dirty || prodForm.get('description')?.touched)" class="text-warning">
               <ng-container *ngIf="prodForm.get('description')?.hasError('required')">Description is required.</ng-container>
             </div>
-            
+
             <div class="setting-item">
               <div class="row g-2">
                 <div class="col-md-5">
@@ -155,7 +155,7 @@
             <div style="margin-left: 80%;" *ngIf="prodForm.get('bagage')?.invalid && (prodForm.get('bagage')?.dirty || prodForm.get('bagage')?.touched)" class="text-warning">
               <ng-container *ngIf="prodForm.get('bagage')?.hasError('required')">Bagage is required.</ng-container>
             </div>
-            
+
             <div class="setting-item">
               <div class="row g-2">
                 <div class="col-md-5">
@@ -188,7 +188,7 @@
               <ng-container *ngIf="prodForm.get('marque')?.hasError('required')">marque is required.</ng-container>
             </div>
 
-            
+
             <div class="setting-item">
               <div class="row g-2">
                 <div class="col-md-5">
@@ -196,7 +196,7 @@
                 </div>
                 <div class="col-md">
                   <label for="date">Date</label>
-                  <input type="date" class="form-control" id="date" name="date" formControlName="date">
+                  <input type="date" class="form-control" id="date" name="date"  >
                 </div>
               </div>
             </div>
@@ -251,7 +251,7 @@
               <ng-container *ngIf="prodForm.get('place')?.hasError('required')">Place is required.</ng-container>
               <ng-container *ngIf="prodForm.get('place')?.hasError('min')">Place should be greater than or equal to 1.</ng-container>
             </div>
-            
+
             <div class="setting-item">
               <div class="row g-2">
                 <div class="col-md-5">
@@ -269,9 +269,9 @@
               <ng-container *ngIf="prodForm.get('price')?.hasError('min')">Price should be greater than or equal to 0.</ng-container>
               <ng-container *ngIf="prodForm.get('price')?.hasError('max')">Price should be less than or equal to 1000.</ng-container>
             </div>
-            
+
             <button class="btn btn-primary" style="margin-left: 41%;" expand="full" type="submit">Add</button>
-            
+
           </form> </div><!-- card-body -->
     </div>
 

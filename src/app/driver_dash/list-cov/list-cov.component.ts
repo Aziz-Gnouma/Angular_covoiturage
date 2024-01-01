@@ -32,7 +32,7 @@ export class ListCovComponent implements OnInit {
 
 
 
-  constructor(private keycloakService: KeycloakService , private CovoiturageService: CovoiturageService, private router: Router,   
+  constructor(private keycloakService: KeycloakService , private CovoiturageService: CovoiturageService, private router: Router,
   ) {}
 
   get isAuthenticated(): boolean {
@@ -40,10 +40,10 @@ export class ListCovComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getCovoiturages();
-  
+
     this.getUsername();
   }
-  
+
   getUsername(): void {
     this.keycloakService.loadUserProfile().then((profile) => {
       this.IDdriver = profile.id;
@@ -104,7 +104,7 @@ combineData() {
         clientName: matchingUser.name,
         clientEmail: matchingUser.email,
       };
-      
+
       // Push the combined object to the array
       combinedData.push(combinedObject);
     }
@@ -119,12 +119,12 @@ combineData() {
 }
 
 
-  
+
    getCOUNT( id: number) {
     this.CovoiturageService.getReservationsCount(id).subscribe(data => {
       console.log(data)
       return data ;
-      
+
     });
   }
 
@@ -153,7 +153,7 @@ combineData() {
 
   isDateValid(prodDate: Date | string): boolean {
     const currentDate = new Date();
-    
+
     // Parse the date string in the format "DD-MM-YYYY"
     const [day, month, year] = (typeof prodDate === 'string' ? prodDate : '').split('-');
     const productDate = new Date(`${year}-${month}-${day}`);
@@ -163,5 +163,5 @@ combineData() {
 
     return !isNaN(productDate.getTime()) && productDate >= currentDate;
 }
-  
+
 }

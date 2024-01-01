@@ -16,6 +16,9 @@ import { ListCoviComponent } from './admin/list-covi/list-covi.component';
 import { AuthGuard } from './keycloak-init/AuthGuard';
 import { initializeKeycloak } from './keycloak-init/keycloak-init.module';
 import * as Keycloak from 'keycloak-js';
+import { Client_acceuilComponent } from './client_espace/client_acceuil/client_acceuil.component';
+import { List_covoiturageComponent } from './client_espace/list_covoiturage/list_covoi.component';
+
 
 const routes: Routes = [
     { path: 'reservation', component: ReservationsComponent, canActivate: [AuthGuard] },
@@ -29,6 +32,10 @@ const routes: Routes = [
     { path: 'listdriver', component: ListDriverComponent, canActivate: [AuthGuard] },
     { path: 'listclient', component: ListClientComponent, canActivate: [AuthGuard] },
     { path: 'listcov', component: ListCoviComponent, canActivate: [AuthGuard] },
+    { path: 'Client_acceuil', component: Client_acceuilComponent, canActivate: [AuthGuard] },
+    { path: 'List_cov', component: List_covoiturageComponent , canActivate: [AuthGuard]},
+
+
 ];
 
 @NgModule({

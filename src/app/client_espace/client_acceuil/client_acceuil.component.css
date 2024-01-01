@@ -1,0 +1,197 @@
+#main{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+#navbar{
+    height: 50px;
+    width: 100%;
+background-color: white;
+display: flex; /* Use flexbox to create a horizontal layout */
+align-items: center; /* Center items vertically within the flex container */
+margin-bottom: 10px;
+padding-top: 10px;
+}
+#navbar h4 {
+    margin: 0; /* Remove default margin for img and h4 elements */
+    padding: 10px; /* Add padding for spacing */
+    color: #6699ff;
+    text-decoration: none;
+
+}
+#firstphoto1{
+
+    width:  1500px;
+    background-color: black;
+}
+
+#forumRecherche{
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 60px;
+}
+#content{
+    max-width: 1300px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#firstnavblock {
+    display: flex; /* Use flexbox for the blocks inside the navbar */
+
+
+}
+#iconNav{
+
+
+
+
+}
+#secondnavblock{
+    display: flex; /* Use flexbox for the blocks inside the navbar */
+    margin-left: 600px;
+}
+
+#tawsilatext{
+    margin-left: 50px;
+    margin-right: 30px;
+}
+.tawsila-link {
+    color: blue;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 36px;
+    font-weight: normal;
+    text-decoration: none;
+    outline: none;
+}
+
+.tawsila-link:visited {
+    color: blue; /* Set the same color for visited links */
+}
+
+.tawsila-link:hover {
+    color: #6699ff; /* Change the color on hover */
+}
+form {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  input[type="text"],
+  input[type="date"],
+  button {
+    flex: 1;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  input[type="text"],
+  input[type="date"] {
+      width: calc(100% - 10px);
+      padding: 8px;
+      box-sizing: border-box;
+      border: none;
+
+      border-right: 1px solid #ccc; /* Add a right border */
+  }
+  input[type="date"] {
+    width: calc(100% - 10px);
+  }
+
+  .search-btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+  }
+
+  .search-btn:hover {
+    background-color: #2980b9;
+  }
+
+
+
+  .content-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  #photo1 {
+    max-width: 100px;
+    height: auto;
+    margin-right: 20px;
+  }
+  #photo2 {
+    max-width: 100px;
+    height: auto;
+    margin-left: 20px;
+  }
+  .text-content {
+    flex: 1;
+  }
+  p {
+    margin: 0 0 10px;
+  }
+
+
+  .buttont {
+    display: block;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 70px;
+    cursor: pointer;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+  button:hover {
+    background-color: #2980b9;
+  }
+  a{
+
+    text-decoration: none;
+  }
+  .unclickable {
+    pointer-events: none;
+    cursor: default;
+    color: black;
+    
+  }
+
+  .timeDate {
+    margin: 4px; /* Remove default margin for img and h4 elements */
+    padding: 4px; /* Add padding for spacing */
+    color: black;
+    text-decoration: none;
+ font-size: 20px;
+  }
+
+  #helloClient {
+    border: 2px solid blue;
+ border-radius: 20px;
+  }
+  h3{
+    border: 2px solid blue;
+    border-radius: 20px;
+  }
