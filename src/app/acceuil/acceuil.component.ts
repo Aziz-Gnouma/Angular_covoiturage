@@ -52,7 +52,7 @@ export class AcceuilComponent implements OnInit {
     } else if (roles.includes('DRIVER')) {
       this.router.navigate(['/dash']);
     } else if (roles.includes('CLIENT')) {
-      this.router.navigate(['/reservation']);
+      this.router.navigate(['/Client_acceuil']);
     } else {
       this.router.navigate(['/']);
     }
