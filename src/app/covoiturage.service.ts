@@ -140,6 +140,8 @@ getClientById(clientId: number): Observable<any> {
 deleteCovoiturageById(id: number): Observable<any> {
   return this.httpClient.delete(`${this.baseURL}/${id}`);
 }
+
+
 searchCovoiturages(depart: string, destination: string, date: string): Observable<any> {
   // Assuming you have a corresponding endpoint in your Spring Boot app
   const url = `${this.FURL}covsddd/?depart=${depart}&destination=${destination}&date=${date}`;
@@ -149,7 +151,7 @@ searchCovoiturages(depart: string, destination: string, date: string): Observabl
 
 
 
-postConfirmation(userId: number, covoiturageId: number): Observable<any> {
+postConfirmation(userId: String, covoiturageId: number): Observable<any> {
   // Create a confirmation request object
   const confirmationRequest = {
     participationID: '2',

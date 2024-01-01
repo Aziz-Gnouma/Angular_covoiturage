@@ -57,6 +57,7 @@ import { List_covoiturageComponent } from './client_espace/list_covoiturage/list
     IonicModule,
   ],
   providers: [
+    KeycloakService,
 
   ],
   bootstrap: [AppComponent],

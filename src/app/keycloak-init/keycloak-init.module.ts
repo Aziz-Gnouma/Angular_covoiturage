@@ -27,12 +27,13 @@ async function checkRoles(keycloak: KeycloakService, router: Router): Promise<vo
 
     if (token) {
       const roles: string[] = extractRolesFromToken(token);
+      const userId = extractUserIdFromToken(token);
 
 
       const userDetails = await keycloak.loadUserProfile();
       console.log('User Details:', userDetails);
 
-      console.log('User Roles:', roles); // Log the user roles
+      console.log('User id:', userId); // Log the user roles
 
       if (roles.includes('DRIVER')) {
 
@@ -41,7 +42,6 @@ async function checkRoles(keycloak: KeycloakService, router: Router): Promise<vo
 
         router.navigate(['/dashadmin']);
       }else if (roles.includes('CLIENT')) {
-        console.log('Navigating to: /Client_acceuil');
 
         router.navigate(['/Client_acceuil']);
       }
@@ -52,6 +52,11 @@ async function checkRoles(keycloak: KeycloakService, router: Router): Promise<vo
   function extractRolesFromToken(token: string): string[] {
     const decodedToken: any = decodeToken(token);
     return decodedToken?.realm_access?.roles || [];
+  }
+
+  function extractUserIdFromToken(token: string): string | null {
+    const decodedToken: any = decodeToken(token);
+    return decodedToken?.sub || null;
   }
 
   function decodeToken(token: string): any {
