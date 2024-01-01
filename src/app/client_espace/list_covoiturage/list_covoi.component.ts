@@ -22,9 +22,6 @@ export class List_covoiturageComponent implements OnInit {
       this.destination = params['destination'] || '';
       this.date = params['date'] || '';
 
-      // Manually parse the date string to ensure the desired format
-      this.date = this.formatDate(this.date);
-
       // Now you have the search parameters, you can perform your search logic here
       console.log('Search Parameters:', this.departure, this.destination, this.date);
       this.searchCovoiturages();
@@ -51,10 +48,30 @@ export class List_covoiturageComponent implements OnInit {
         }
       );
   }
-  
-  formatDate(date: string): string {
+
+ /* formatDate(date: string): string {
     // Assuming date is in the format YYYY-MM-DD
     const parts = date.split('-');
     return `${parts[2]}-${parts[1]}-${parts[0]}`;
   }
+  */
+
+/*  confirmReservation() {
+    // Disable any UI elements if needed
+
+    this.covoiturageService.postConfirmation(this.userId, this.covoiturageId).subscribe(
+      () => {
+        // Successful confirmation
+        console.log('Confirmation successful.');
+        // Navigate or handle success as needed
+      },
+      error => {
+        // Handle unsuccessful confirmation
+        console.error('Error confirming reservation', error);
+        // Handle error and enable UI elements if needed
+      }
+    );
+  }
+*/
+
 }

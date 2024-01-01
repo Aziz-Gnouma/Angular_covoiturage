@@ -146,4 +146,32 @@ searchCovoiturages(depart: string, destination: string, date: string): Observabl
 
   return this.httpClient.get(url);
 }
+
+
+
+postConfirmation(userId: number, covoiturageId: number): Observable<any> {
+  // Create a confirmation request object
+  const confirmationRequest = {
+    participationID: '2',
+    clientID: userId,
+    carpoolingID: covoiturageId,
+    etat: 1
+  };
+
+  // Log the API details
+  const jsonBody = JSON.stringify(confirmationRequest);
+  const requestDetails = `
+    API Method: POST
+    API Body: ${jsonBody}
+  `;
+  console.log('API Details:\n', requestDetails);
+
+  // Construct dynamic URL
+  const dynamicUrl = `${this.RURL}?clientID=${confirmationRequest.clientID}&carpoolingID=${confirmationRequest.carpoolingID}&etat=${confirmationRequest.etat}`;
+  console.log('API:\n', dynamicUrl);
+
+  // Make the API request with a dynamic URL
+  return this.httpClient.post(dynamicUrl, null);
+}
+
 }

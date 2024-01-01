@@ -32,8 +32,8 @@ const routes: Routes = [
     { path: 'listdriver', component: ListDriverComponent, canActivate: [AuthGuard] },
     { path: 'listclient', component: ListClientComponent, canActivate: [AuthGuard] },
     { path: 'listcov', component: ListCoviComponent, canActivate: [AuthGuard] },
-    { path: 'Client_acceuil', component: Client_acceuilComponent },
-    { path: 'List_cov', component: List_covoiturageComponent },
+    { path: 'Client_acceuil', component: Client_acceuilComponent, canActivate: [AuthGuard] },
+    { path: 'List_cov', component: List_covoiturageComponent , canActivate: [AuthGuard]},
 
 
 ];
