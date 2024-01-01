@@ -43,15 +43,15 @@
           <ul class="package-list">
             <li *ngFor="let covoiturage of covoiturages">
               <div class="package-card">
-          
+
                 <figure class="card-banner">
                   <img src="./assets/images/packege-1.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
                 </figure>
-          
+
                 <div class="card-content">
-          
+
                   <h3 class="h3 card-title">{{ covoiturage.depart }} to {{ covoiturage.destination }}</h3>
-          
+
                   <p class="card-text">
                     <!-- Use covoiturage properties here -->
                     marque de voiture: {{ covoiturage.marque }}<br>
@@ -61,7 +61,7 @@
                     bagage: {{ covoiturage.bagage }}<br>
                     <!-- Add other properties as needed -->
                   </p>
-          
+
                   <ul class="card-meta-list">
                     <li class="card-meta-item">
                       <div class="meta-box">
@@ -69,19 +69,19 @@
                         <p class="text">{{ covoiturage.heureDepart }} - {{ covoiturage.heureArrive }}</p>
                       </div>
                     </li>
-          
+
                     <!-- Add other meta information as needed -->
-          
+
                   </ul>
-          
+
                 </div>
-          
+
                 <div class="card-price">
-          
+
                   <div class="wrapper">
-          
+
                     <p class="reviews">(25 reviews)</p>
-          
+
                     <div class="card-rating">
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
@@ -89,22 +89,22 @@
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                     </div>
-          
+
                   </div>
-          
+
                   <p class="price">
                     {{ covoiturage.price }}
-                    <span>/ per person</span>
+                    DT<span>/ per person</span>
                   </p>
-          
-                  <button class="btn btn-secondary">Book Now</button>
-          
+
+                  <button class="btn btn-secondary">ACCEEPT!</button>
+
                 </div>
-          
+
               </div>
             </li>
           </ul>
-      
+
         </div>
       </section>
 

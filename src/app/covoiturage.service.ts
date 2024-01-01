@@ -19,7 +19,7 @@ export class CovoiturageService {
   private log = "http://localhost:9898/auth";
 
   constructor(private httpClient: HttpClient) { }
-  
+
   getCovoituragesList(): Observable<cov[]>{
     return this.httpClient.get<cov[]>(`${this.baseURL}`);
   }
@@ -36,25 +36,25 @@ export class CovoiturageService {
   getReservationsCount(id: number): Observable<Number> {
     return this.httpClient.get<Number>(`${this.RURL}Count/${id}`);
   }
-  
+
   getReservationsEtat(): Observable<cov[]> {
     return this.httpClient.get<cov[]>(`${this.RURL}Etat`);
   }
-  
-  
-  
+
+
+
   createCovoiturage(cov: cov): Observable<Object>{
     alert("Covoiturage saved ");
-    
+
     return this.httpClient.post(`${this.baseURL}`, cov);
   }
-  
+
   getCovoiturageById(id: number): Observable<cov>{
     return this.httpClient.get<cov>(`${this.baseURL}/${id}`);
   }
 
   updateCovoiturage(id: number, cov: cov): Observable<Object>{
-   
+
     const confirmed = confirm("Updated Covoiturage !");
     if (confirmed) {
     return this.httpClient.put(`${this.baseURL}/${id}`, cov);
@@ -89,7 +89,7 @@ export class CovoiturageService {
     return this.httpClient.get<cov>(`${this.FURL}/${nom}`);
   }
 
-  
+
 
   counts(): Observable<cov>{
     return this.httpClient.get<cov>(`${this.FURL}count`);
@@ -114,14 +114,14 @@ getDriversList(): Observable<user[]> {
   return this.httpClient.get<user[]>(`${this.log}/drivers`);
 }
 deleteDriver(id: number): Observable<any> {
-  return this.httpClient.delete<any>(`${this.log}/${id}`); 
+  return this.httpClient.delete<any>(`${this.log}/${id}`);
 }
 //list-client
 getClientsList(): Observable<user[]> {
   return this.httpClient.get<user[]>(`${this.log}/clients`);
 }
 deleteClient(id: number): Observable<any> {
-  return this.httpClient.delete<any>(`${this.log}/${id}`); 
+  return this.httpClient.delete<any>(`${this.log}/${id}`);
 }
 getParticipationsForCovoiturage(covoiturageId: number): Observable<reservation[]> {
   return this.httpClient.get<reservation[]>(`${this.RURL}/${covoiturageId}`);
@@ -134,14 +134,15 @@ getParticipantsForCovoiturage(covoiturageId: number): Observable<any[]> {
 
 getClientById(clientId: number): Observable<any> {
   return this.httpClient.get<any>(`${this.log}/${clientId}`);
-  // Endpoint pour obtenir les informations du client basées sur l'ID du client
+  //Endpoint pour obtenir les informations du client basées sur l'ID du client
 }
+
 deleteCovoiturageById(id: number): Observable<any> {
   return this.httpClient.delete(`${this.baseURL}/${id}`);
 }
 searchCovoiturages(depart: string, destination: string, date: string): Observable<any> {
   // Assuming you have a corresponding endpoint in your Spring Boot app
-  const url = `${this.FURL}search?depart=${depart}&destination=${destination}&date=${date}`;
+  const url = `${this.FURL}covsddd/?depart=${depart}&destination=${destination}&date=${date}`;
 
   return this.httpClient.get(url);
 }
