@@ -1,23 +1,25 @@
 <div class="sidebar">
     <div class="sidebar-header">
-      <a href="/dashadmin" class="sidebar-logo">Wassalni</a>
+      <a routerLink="/dashadmin" class="sidebar-logo">Wassalni</a>
     </div><!-- sidebar-header -->
     <div id="sidebarMenu" class="sidebar-body">
       <div class="nav-group show">
-        <a href="#" class="nav-label">Dashboard</a>
+        <a class="nav-label">Dashboard</a>
         <ul class="nav nav-sidebar">
           
           <li class="nav-item">
-            <a routerLink="" class="nav-link"><i class="ri-bar-chart-2-line"></i> <span>Website Analytics</span></a>
+            <a routerLink="/dashadmin" class="nav-link"><i class="ri-bar-chart-2-line"></i> <span>Website Analytics</span></a>
           </li>
          
         </ul>
       </div><!-- nav-group -->
       <div class="nav-group show">
-        <a href="#" class="nav-label">Tasks</a>
+        <a class="nav-label">Tasks</a>
         <ul class="nav nav-sidebar">
           
-         
+          <li class="nav-item">
+            <a routerLink="/dashadmin" class="nav-link"><i class="ri-calendar-line"></i> <span>Home</span></a>
+          </li>
             <li class="nav-item">
                 <a routerLink="/listdriver" class="nav-link"><i class="ri-calendar-line"></i> <span>List Drivers</span></a>
               </li>
@@ -38,7 +40,7 @@
   </div><!-- sidebar -->
   
   <div class="header-main px-3 px-lg-4">
-    <a id="menuSidebar" href="#" class="menu-link me-3 me-lg-4"><i class="ri-menu-2-fill"></i></a>
+    <a id="menuSidebar" class="menu-link me-3 me-lg-4"><i class="ri-menu-2-fill"></i></a>
   
     <div class="form-search me-auto">
       <input type="text" class="form-control" placeholder="Search">
@@ -46,25 +48,25 @@
     </div><!-- form-search -->
   
     <div class="dropdown dropdown-skin">
-      <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ri-settings-3-line"></i></a>
+      <a class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="ri-settings-3-line"></i></a>
       <div class="dropdown-menu dropdown-menu-end mt-10-f">
         <label>Skin Mode</label>
         <nav id="skinMode" class="nav nav-skin">
-          <a href="" class="nav-link active">Light</a>
-          <a href="" class="nav-link">Dark</a>
+          <a class="nav-link active">Light</a>
+          <a class="nav-link">Dark</a>
         </nav>
         <hr>
         <label>Sidebar Skin</label>
         <nav id="sidebarSkin" class="nav nav-skin">
-          <a href="" class="nav-link active">Default</a>
-          <a href="" class="nav-link">Prime</a>
-          <a href="" class="nav-link">Dark</a>
+          <a class="nav-link active">Default</a>
+          <a class="nav-link">Prime</a>
+          <a class="nav-link">Dark</a>
         </nav>
       </div><!-- dropdown-menu -->
     </div><!-- dropdown -->
   
     <div class="dropdown dropdown-notification ms-3 ms-xl-4">
-      <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><small>3</small><i class="ri-notification-3-line"></i></a>
+      <a class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><small>3</small><i class="ri-notification-3-line"></i></a>
       <div class="dropdown-menu dropdown-menu-end mt-10-f me--10-f">
         <div class="dropdown-menu-header">
           <h6 class="dropdown-menu-title">Notifications</h6>
@@ -94,7 +96,7 @@
           <li class="list-group-item">
             <div class="avatar online"><img src="https://via.placeholder.com/300/4c5366/fff" alt=""></div>
             <div class="list-group-body">
-              <p>Reminder: <strong>Jerry Cuares</strong> invited you to like <strong>Cuares Surveying Services</strong>. <br><a href="">Accept</a> or <a href="">Decline</a></p>
+              <p>Reminder: <strong>Jerry Cuares</strong> invited you to like <strong>Cuares Surveying Services</strong>. <br><a>Accept</a> or <a>Decline</a></p>
               <span>Aug 14 11:50pm</span>
             </div><!-- list-group-body -->
           </li>
@@ -106,11 +108,11 @@
             </div><!-- list-group-body -->
           </li>
         </ul>
-        <div class="dropdown-menu-footer"><a href="">Show all Notifications</a></div>
+        <div class="dropdown-menu-footer"><a>Show all Notifications</a></div>
       </div><!-- dropdown-menu -->
     </div><!-- dropdown -->
     <div class="dropdown dropdown-profile ms-3 ms-xl-4">
-        <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><div class="avatar online"><img src="https://via.placeholder.com/500/4c5366/fff" alt=""></div></a>
+        <a class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><div class="avatar online"><img src="https://via.placeholder.com/500/4c5366/fff" alt=""></div></a>
         <div class="dropdown-menu dropdown-menu-end mt-10-f">
           <div class="dropdown-menu-body">
             <div class="avatar avatar-xl online mb-3"><img src="https://via.placeholder.com/500/4c5366/fff" alt=""></div>
@@ -118,15 +120,15 @@
             <p class="fs-sm text-secondary">Premium Member</p>
   
             <nav class="nav">
-              <a href=""><i class="ri-edit-2-line"></i> Edit Profile</a>
-              <a href=""><i class="ri-profile-line"></i> View Profile</a>
+              <a routerLink="/editProfileAdmin"><i class="ri-edit-2-line"></i> Edit Profile</a>
+              <a><i class="ri-profile-line"></i> View Profile</a>
             </nav>
             <hr>
             <nav class="nav">
-              <a href=""><i class="ri-question-line"></i> Help Center</a>
-              <a href=""><i class="ri-lock-line"></i> Privacy Settings</a>
-              <a href=""><i class="ri-user-settings-line"></i> Account Settings</a>
-              <a  (click)="logout()">
+              <a><i class="ri-question-line"></i> Help Center</a>
+              <a><i class="ri-lock-line"></i> Privacy Settings</a>
+              <a><i class="ri-user-settings-line"></i> Account Settings</a>
+             <a  (click)="logout()">
                 <i class="ri-logout-box-r-line"></i> Log Out
               </a>
             </nav>
@@ -146,9 +148,9 @@
       </div>
   
       <nav class="nav nav-icon nav-icon-lg">
-        <a href="" class="nav-link" data-bs-toggle="tooltip" title="Share"><i class="ri-share-line"></i></a>
-        <a href="" class="nav-link" data-bs-toggle="tooltip" title="Print"><i class="ri-printer-line"></i></a>
-        <a href="" class="nav-link" data-bs-toggle="tooltip" title="Report"><i class="ri-bar-chart-2-line"></i></a>
+        <a class="nav-link" data-bs-toggle="tooltip" title="Share"><i class="ri-share-line"></i></a>
+        <a class="nav-link" data-bs-toggle="tooltip" title="Print"><i class="ri-printer-line"></i></a>
+        <a class="nav-link" data-bs-toggle="tooltip" title="Report"><i class="ri-bar-chart-2-line"></i></a>
       </nav>
     </div>
   
@@ -157,7 +159,7 @@
         <div class="card card-one">
           <div class="card-body">
             <label class="card-title fs-sm fw-medium mb-1">ALL Carpoolings</label>
-            <h3 class="card-value mb-1"><i class="ri-shopping-bag-3-line"></i></h3>
+            <h3 class="card-value mb-1"><i class="ri-shopping-bag-3-line"></i><span>{{ totalCovoiturages }}</span></h3>
             <small><span class="d-inline-flex text-success">0.7% <i class="ri-arrow-up-line"></i></span> than last week</small>
           </div><!-- card-body -->
         </div><!-- card-one -->
@@ -165,8 +167,8 @@
       <div class="col-6 col-xl-3">
         <div class="card card-one">
           <div class="card-body">
-            <label class="card-title fs-sm fw-medium mb-1">Total Accepted Reservations</label>
-            <h3 class="card-value mb-1"><i class="ri-briefcase-4-line"></i> <span></span></h3>
+            <label class="card-title fs-sm fw-medium mb-1">All Drivers</label>
+            <h3 class="card-value mb-1"><i class="ri-briefcase-4-line"></i> <span>{{ numberOfDrivers }}</span></h3>
             <small><span class="d-inline-flex text-success">2.1% <i class="ri-arrow-up-line"></i></span> than last week</small>
           </div><!-- card-body -->
         </div><!-- card-one -->
@@ -174,8 +176,8 @@
       <div class="col-6 col-xl-3">
         <div class="card card-one">
           <div class="card-body">
-            <label class="card-title fs-sm fw-medium mb-1">Total Canceled Reservations</label>
-            <h3 class="card-value mb-1"><i class="ri-inbox-line"></i></h3>
+            <label class="card-title fs-sm fw-medium mb-1">All Clients</label>
+            <h3 class="card-value mb-1"><i class="ri-inbox-line"></i><span>{{ numberOfClients }}</span></h3>
             <small><span class="d-inline-flex text-danger">0.3% <i class="ri-arrow-down-line"></i></span> than last week</small>
           </div><!-- card-body -->
         </div><!-- card-one -->
@@ -183,8 +185,8 @@
       <div class="col-6 col-xl-3">
         <div class="card card-one">
           <div class="card-body">
-            <label class="card-title fs-sm fw-medium mb-1">Conversion Rate</label>
-            <h3 class="card-value mb-1"><i class="ri-bar-chart-box-line"></i> 6.28<span>%</span></h3>
+            <label class="card-title fs-sm fw-medium mb-1">Total Participation</label>
+            <h3 class="card-value mb-1"><i class="ri-bar-chart-box-line"></i><span>{{ totalParticipants }}</span></h3>
             <small><span class="d-inline-flex text-success">1.2% <i class="ri-arrow-up-line"></i></span> than last week</small>
           </div><!-- card-body -->
         </div><!-- card-one -->
@@ -195,8 +197,8 @@
             <h6 class="card-title">Monthly Growth Revenue</h6>
             <nav class="nav nav-icon nav-icon-sm ms-auto">
               
-              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
-              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+              <a class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a class="nav-link"><i class="ri-more-2-fill"></i></a>
             </nav>
             
           </div><!-- card-header -->
@@ -212,14 +214,9 @@
             <div class="p-2">
               <div class="row g-3">
                 <div class="col-sm-6">
-                  <h3 class="card-value mb-2"><span>$</span>834,631.18</h3>
+                  <h3 class="card-value mb-2"><span>1</span>Driver</h3>
                   <label class="card-title fw-semibold text-dark mb-2">Monthly Revenue Growth</label>
-                  <p class="mb-0 fs-xs text-secondary">Measure how fast you’re growing monthly recurring revenue.</p>
-                </div><!-- col -->
-                <div class="col-sm-6">
-                  <h3 class="card-value mb-2"><span>$</span>19,204.15</h3>
-                  <label class="card-title fw-semibold text-dark mb-2">Monthly Revenue/Customer</label>
-                  <p class="mb-0 fs-xs text-secondary">The revenue generated per account on a monthly or yearly basis.</p>
+                  <p class="mb-0 fs-xs text-secondary">Measure how fast you’re growing monthly.</p>
                 </div><!-- col -->
               </div><!-- row -->
             </div>
@@ -231,8 +228,8 @@
           <div class="card-header">
             <h6 class="card-title">Account Retention</h6>
             <nav class="nav nav-icon nav-icon-sm ms-auto">
-              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
-              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+              <a class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a class="nav-link"><i class="ri-more-2-fill"></i></a>
             </nav>
           </div><!-- card-header -->
           <div class="card-body">

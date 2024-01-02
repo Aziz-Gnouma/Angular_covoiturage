@@ -175,5 +175,12 @@ postConfirmation(userId: String, covoiturageId: number): Observable<any> {
   // Make the API request with a dynamic URL
   return this.httpClient.post(dynamicUrl, null);
 }
+getCovoituragesCount(): Observable<number> {
+  return this.httpClient.get<number>(`http://localhost:8083/driver/count`);
+}
+
+getTotalParticipations(): Observable<number> {
+  return this.httpClient.get<number>(`http://localhost:3002/totalParticipants`);
+}
 
 }
