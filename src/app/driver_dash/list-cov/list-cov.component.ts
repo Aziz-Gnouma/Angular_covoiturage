@@ -23,6 +23,7 @@ export class ListCovComponent implements OnInit {
   count!: Number ;
   y!: number ;
   okk: any ;
+  username: string | undefined; 
   users:any;
   combinedData: {clientEmail?: any;clientName?: any; nomreservation?: any; clienteservation: any; idcov: any; departcovoiturage: any; destcovoiturage?: any; datecovoiturage?: any }[] = [];
 

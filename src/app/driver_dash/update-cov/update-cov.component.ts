@@ -16,6 +16,8 @@ import { KeycloakService } from 'keycloak-angular';
 export class UpdateCovComponent implements OnInit {
   prodForm: FormGroup; 
   id!: number;
+  username: string | undefined; 
+
   cov: cov = new cov();
   constructor(private CovoiturageService: CovoiturageService,
     private formBuilder: FormBuilder,

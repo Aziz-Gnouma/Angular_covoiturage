@@ -21,6 +21,7 @@ export class ReservationsComponent implements OnInit {
   searchText = '';
   selectedClientID!: number;
   covs:any;
+  username: string | undefined; 
   users:any;
   reservation: reservation = new reservation();
   combinedData: {clientEmail?: any;clientName?: any; nomreservation?: any; clienteservation: any; idcov: any; departcovoiturage: any; destcovoiturage?: any; datecovoiturage?: any ;Etatreservation?: any  }[] = [];
