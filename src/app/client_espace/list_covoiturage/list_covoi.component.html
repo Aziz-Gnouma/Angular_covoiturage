@@ -7,19 +7,11 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
-<body id="top">
-
-
+<body>
+  <app-navbar></app-navbar>
 
   <main>
     <article>
-
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-
 
       <div id="tableauDeBord">
         <img
@@ -27,9 +19,6 @@
           alt=""
         />
       </div>
-
-
-
       <!--
         - #PACKAGE
       -->
@@ -97,7 +86,7 @@
                     DT<span>/ per person</span>
                   </p>
 
-                  <button class="btn btn-secondary" (click)="confirmReservation(covoiturage.id)">ACCEPT!</button>
+<button class="btn btn-secondary" (click)="confirmReservation(covoiturage.id)">ACCEPT!</button>
                 </div>
 
               </div>

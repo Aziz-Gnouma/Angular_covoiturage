@@ -16,7 +16,7 @@ import { ListCoviComponent } from './admin/list-covi/list-covi.component';
 import { AuthGuard } from './keycloak-init/AuthGuard';
 import { initializeKeycloak } from './keycloak-init/keycloak-init.module';
 import * as Keycloak from 'keycloak-js';
-import { Client_acceuilComponent } from './client_espace/client_acceuil/client_acceuil.component';
+import {Client_acceuilComponent } from './client_espace/client_acceuil/client_acceuil.component';
 import { List_covoiturageComponent } from './client_espace/list_covoiturage/list_covoi.component';
 
 

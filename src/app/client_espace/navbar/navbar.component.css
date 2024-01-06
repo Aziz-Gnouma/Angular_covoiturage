@@ -1,0 +1,39 @@
+/* navbar.component.css */
+#navbar {
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  background-color: #fff; /* Use #fff for white background */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  justify-content: space-between; /* Use space-between to align items at each end */
+
+   /* Add space between items */
+}
+
+#tawsilatext a {
+  color: #6699ff;
+  text-decoration: none;
+  font-size: 30px; /* Adjust font size as needed */
+}
+
+#firstnavblock h4 {
+  margin: 0;
+  padding: 10px;
+}
+
+
+
+#user-settings i {
+  margin-right: 10px;
+}
+
+#user-settings button {
+  background-color: #6699ff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}

@@ -1,34 +1,7 @@
 <div id="main">
   <div id="hi">
-    <div id="navbar">
-      <h1 id="tawsilatext">
-        <a href="http://localhost:4200/Client_acceuil" class="tawsila-link">
-          tawsila
-        </a>
-      </h1>
-      <div id="firstnavblock">
-
-          <h4>
-              <a href="">
-              covoiturage
-          </a>
-          </h4>
-
-      </div>
-      <div id="secondnavblock">
-        <div id="helloClient" [style.color]="textColor">
-          <h4>
-            <a href="" [class.unclickable]="true"> hello {{client?.name}} </a>
-          </h4>
-        </div>
-
-
-        <h3 class="timeDate"><a href=""  [class.unclickable]="true"> date: {{ currentDate }} </a></h3>
-
-        <h3 class="timeDate"><a href=""  [class.unclickable]="true"> time: {{ currentTime }} </a></h3>
-
-      </div>
-    </div>
+  <!-- client-acceuil.component.html -->
+<app-navbar></app-navbar>
     <div id="firstphoto">
       <img
         src="../../../assets/assets/img/client_accueil/Capture.PNG"
@@ -37,22 +10,15 @@
       />
     </div>
     <div id="forumRecherche">
-      <form>
-        <input
-          type="text"
-          id="departure"
-          name="departure"
-          placeholder="Enter departure location"
-        />
-        <input
-          type="text"
-          id="destination"
-          name="destination"
-          placeholder="Enter destination location"
-        />
-        <input type="date" id="date" name="date" />
-        <button type="button" class="search-btn" (click)="search()">Search</button>
-      </form>
+      <!-- interface-client.component.html -->
+
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+  <input type="text" formControlName="source" placeholder="Enter source location" />
+  <input type="text" formControlName="destination" placeholder="Enter destination location" />
+  <input type="date" id="date" name="date" />
+
+  <button type="submit" class="search-btn">Search</button>
+</form>
     </div>
     <div id="content">
       <div class="content-item">

@@ -1,0 +1,20 @@
+<!-- navbar.component.html -->
+<div id="navbar">
+  <h1 id="tawsilatext">
+    <a href="http://localhost:4200/" class="tawsila-link">
+      Tawsila
+    </a>
+  </h1>
+  <div id="firstnavblock">
+    <h4>
+      <a href="http://localhost:4200/Client_acceuil">
+        covoiturage
+      </a>
+    </h4>
+  </div>
+  <!-- Add the provided div here -->
+  <div *ngIf="isAuthenticated" id="user-settings">
+    <i class="ri-user-settings-line"></i>
+    <button (click)="logout()">Logout</button>
+  </div>
+</div>

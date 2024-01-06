@@ -10,24 +10,9 @@ body {
     padding: 0;
     background-color: #fff;
   }
-#navbar{
-    height: 50px;
-    width: 100%;
-background-color: white;
-display: flex; /* Use flexbox to create a horizontal layout */
-align-items: center; /* Center items vertically within the flex container */
-margin-bottom: 10px;
-padding-top: 10px;
-}
-#navbar h4 {
-    margin: 0; /* Remove default margin for img and h4 elements */
-    padding: 10px; /* Add padding for spacing */
-    color: #6699ff;
-    text-decoration: none;
 
-}
 #firstphoto1{
-
+padding-top: 30px;
     width:  1500px;
     background-color: black;
 }
@@ -176,7 +161,7 @@ form {
     pointer-events: none;
     cursor: default;
     color: black;
-    
+
   }
 
   .timeDate {
