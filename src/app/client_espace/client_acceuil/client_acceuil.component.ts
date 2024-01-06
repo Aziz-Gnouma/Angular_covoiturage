@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { user } from 'src/app/user';
 import { CovoiturageService } from 'src/app/covoiturage.service';
 import { KeycloakService } from 'keycloak-angular';
+
 import { Router } from '@angular/router';
 @Component({
         selector: 'app-root',
@@ -15,13 +16,16 @@ export class Client_acceuilComponent {
     client: user | undefined; // Declare a variable to store the selected client
     clients: user[] = []; // Declare a variable to store the list of clients
     textColor: string = '';
+    username: string | undefined; // Replace 'undefined' with the actual type if known
+
     constructor(
         private covoiturageService: CovoiturageService,
-        private keycloak: KeycloakService,
+        private keycloakService: KeycloakService ,
         private router: Router  // <-- Add this line
       ) {}
 
     ngOnInit(): void {
+      this.getUsername();
       this.updateDateTime();
       setInterval(() => {
         this.updateDateTime();
@@ -32,6 +36,20 @@ export class Client_acceuilComponent {
         this.updateTextColor(); // Update every second
       }, 1000);
     }
+    getUsername(): void {
+      this.keycloakService.loadUserProfile().then((profile) => {
+        this.username = profile.username;
+      });
+    }
+
+    logout(): void {
+      const redirectUri = window.location.origin + '/';
+      console.log('Logout initiated. Redirect URI:', redirectUri);
+  
+      this.keycloakService.logout(redirectUri)
+          .then(() => console.log('Logout successful'))
+          .catch(error => console.error('Logout failed:', error));
+  }
   
     updateDateTime(): void {
       const now = new Date();
@@ -86,4 +104,5 @@ export class Client_acceuilComponent {
           queryParamsHandling: 'merge', // Add this line to merge with existing query parameters
         });
       }
+      
    }

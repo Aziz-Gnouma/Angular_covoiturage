@@ -32,9 +32,15 @@ export class DashComponent implements OnInit {
     });
   }
   logout(): void {
-    const redirectUri = window.location.origin + '/'; // Use the correct path
-    this.keycloakService.logout(redirectUri);
-  }
+    const redirectUri = window.location.origin + '/';
+    console.log('Logout initiated. Redirect URI:', redirectUri);
+
+    this.keycloakService.logout(redirectUri)
+        .then(() => console.log('Logout successful'))
+        .catch(error => console.error('Logout failed:', error));
+}
+
+
  
   
 
