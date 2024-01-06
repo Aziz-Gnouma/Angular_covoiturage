@@ -13,6 +13,7 @@ export class List_covoiturageComponent implements OnInit {
   destination: string = '';
   date: string = '';
   covoiturages!: any[];
+  username: string | undefined; 
 
   // Add properties for userId and covoiturageId
   userId: string = '';
@@ -21,10 +22,12 @@ export class List_covoiturageComponent implements OnInit {
   constructor(private route: ActivatedRoute,
      private router: Router,
      private covoiturageService: CovoiturageService,
+     
      private keycloakService: KeycloakService  // Inject KeycloakService
      ) {}
 
   ngOnInit(): void {
+    this.getUsername();
     // Retrieve the query parameters from the route
     this.route.queryParams.subscribe((params: { [key: string]: string }) => {
       this.departure = params['departure'] || '';
@@ -57,6 +60,21 @@ export class List_covoiturageComponent implements OnInit {
       }
     });
   }
+
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
+
+  logout(): void {
+    const redirectUri = window.location.origin + '/';
+    console.log('Logout initiated. Redirect URI:', redirectUri);
+
+    this.keycloakService.logout(redirectUri)
+        .then(() => console.log('Logout successful'))
+        .catch(error => console.error('Logout failed:', error));
+}
 
   searchCovoiturages(): void {
     // No need to format the date here since it's already in the correct format

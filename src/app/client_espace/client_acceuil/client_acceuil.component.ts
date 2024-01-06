@@ -51,7 +51,7 @@
        );
      }
 
-   
+
 
      // Handle form submission
      search(): void {

@@ -21,6 +21,7 @@ export class ReservationsComponent implements OnInit {
   searchText = '';
   selectedClientID!: number;
   covs:any;
+  username: string | undefined; 
   users:any;
   reservation: reservation = new reservation();
   combinedData: {clientEmail?: any;clientName?: any; nomreservation?: any; clienteservation: any; idcov: any; departcovoiturage: any; destcovoiturage?: any; datecovoiturage?: any ;Etatreservation?: any  }[] = [];
@@ -36,13 +37,18 @@ matchingUser:any;
 
   ngOnInit(): void {
     this.getreservations();
+    this.getUsername1();
     console.log('ressss : ' ,this.res);
     console.log("now " ,this.matchingCovoiturage)
  
 
   this.getUsername();
 }
-
+getUsername1(): void {
+  this.keycloakService.loadUserProfile().then((profile) => {
+    this.username = profile.username;
+  });
+}
 getUsername(): void {
   this.keycloakService.loadUserProfile().then((profile) => {
     this.IDdriver = profile.id;
