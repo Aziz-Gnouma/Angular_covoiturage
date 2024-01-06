@@ -43,8 +43,13 @@ export class ListCovComponent implements OnInit {
     this.getCovoiturages();
 
     this.getUsername();
+    this.getUsername1();
   }
-
+  getUsername1(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
   getUsername(): void {
     this.keycloakService.loadUserProfile().then((profile) => {
       this.IDdriver = profile.id;

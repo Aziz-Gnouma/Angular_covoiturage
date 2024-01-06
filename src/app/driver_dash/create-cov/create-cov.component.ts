@@ -13,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CreateCovComponent implements OnInit {
 
   prodForm: FormGroup;
+  username: string | undefined; 
   driver: string | undefined;
 
   constructor(
@@ -38,8 +39,15 @@ export class CreateCovComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsername();
+    this.getUsername1();
+
   }
 
+  getUsername1(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
   getUsername(): void {
     this.keycloakService.loadUserProfile().then((profile) => {
       this.driver = profile.id;

@@ -37,13 +37,18 @@ matchingUser:any;
 
   ngOnInit(): void {
     this.getreservations();
+    this.getUsername1();
     console.log('ressss : ' ,this.res);
     console.log("now " ,this.matchingCovoiturage)
  
 
   this.getUsername();
 }
-
+getUsername1(): void {
+  this.keycloakService.loadUserProfile().then((profile) => {
+    this.username = profile.username;
+  });
+}
 getUsername(): void {
   this.keycloakService.loadUserProfile().then((profile) => {
     this.IDdriver = profile.id;
