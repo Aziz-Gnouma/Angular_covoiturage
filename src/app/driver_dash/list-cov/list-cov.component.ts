@@ -159,15 +159,16 @@ combineData() {
 
   isDateValid(prodDate: Date | string): boolean {
     const currentDate = new Date();
-
-    // Parse the date string in the format "DD-MM-YYYY"
-    const [day, month, year] = (typeof prodDate === 'string' ? prodDate : '').split('-');
+  
+    // Parse the date string in the format "YYYY-MM-DD"
+    const [year, month, day] = (typeof prodDate === 'string' ? prodDate : '').split('-');
     const productDate = new Date(`${year}-${month}-${day}`);
-
+  
     console.log('Current Date:', currentDate);
     console.log('Product Date:', productDate);
-
+  
     return !isNaN(productDate.getTime()) && productDate >= currentDate;
-}
+  }
+  
 
 }

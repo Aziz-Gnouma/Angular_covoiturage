@@ -27,6 +27,7 @@ export class CreateCovComponent implements OnInit {
       destination: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
+      
       phone: ['', Validators.required],
       marque:['', Validators.required],
       heureDepart: ['', Validators.required],
@@ -51,35 +52,49 @@ export class CreateCovComponent implements OnInit {
   getUsername(): void {
     this.keycloakService.loadUserProfile().then((profile) => {
       this.driver = profile.id;
+      console.log(this.driver);
     });
+  }
+  formatDate(dateString: string): string {
+    // Implement your date formatting logic here based on the expected format
+    // Example: return new Date(dateString).toISOString();
+    return dateString;
   }
 
   saveCovoiturage() {
-    if (!this.driver) {
-      console.error('Driver ID is not available.');
-      // Display a user-friendly error message or disable the submit button
-      return;
-    }
+    console.log('Date before formatting:', this.prodForm.value.date);
     
+    const formattedDate = this.formatDate(this.prodForm.value.date);
 
- // Ensure date is in the correct format (adjust this according to your needs)
-    const covoiturageData = { ...this.prodForm.value, idDriver: String(this.driver) };
-
+  const covoiturageData = {
+    ...this.prodForm.value,
+    date: formattedDate,
+    idDriver: String(this.driver),
+  };
+  
     this.CovoiturageService.createCovoiturage(covoiturageData).subscribe(
       data => {
         console.log('Covoiturage created successfully', data);
-        this.goToECovoiturageList();
+        this.goToCovoiturageList();
       },
       error => {
         console.error('Error creating covoiturage', error);
         if (error instanceof HttpErrorResponse) {
           console.error('Status:', error.status);
+          console.error('Status Text:', error.statusText);
           console.error('Body:', error.error);
-        }
-        // Display additional error messages in the UI if needed
-      }
+        }}
+      
     );
   }
+  
+  goToCovoiturageList() {
+    this.router.navigate(['/list']);
+  }
+  
+  
+  
+  
   logout(): void {
     const redirectUri = window.location.origin + '/'; // Use the correct path
     this.keycloakService.logout(redirectUri);
@@ -89,9 +104,8 @@ export class CreateCovComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.prodForm.valid) {
-      console.log(this.prodForm.value);
+   
       this.saveCovoiturage();
-    }
+    
   }
 }

@@ -11,6 +11,7 @@ export class cov {
     price!: number;
     place!: number;
     heureDepart!:String;
+    idDriver!:String;
     heureArrive!:String;
     date!:Date;
     totalReservations!:number;
