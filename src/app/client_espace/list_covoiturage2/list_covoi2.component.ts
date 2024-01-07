@@ -15,7 +15,7 @@ export class List_covoiturage2Component implements OnInit {
   destination: string = '';
   date: string = '';
   covoiturages: cov[] = [];
-  username: string | undefined; 
+  username: string | undefined;
   reservations: reservation[] = [];
   combinedData: { reservation: reservation, covoiturage: cov }[] = [];
   // Add properties for userId and covoiturageId
@@ -25,7 +25,7 @@ export class List_covoiturage2Component implements OnInit {
   constructor(private route: ActivatedRoute,
      private router: Router,
      private covoiturageService: CovoiturageService,
-     
+
      private keycloakService: KeycloakService  // Inject KeycloakService
      ) {}
 
@@ -55,7 +55,7 @@ export class List_covoiturage2Component implements OnInit {
           console.log('Search Parameters:', this.departure, this.destination, this.date);
 
           // Fetch covoiturages using search parameters
-     
+
         } else {
           console.error('User details not found in the id token.');
         }
@@ -84,7 +84,7 @@ getReservationsList(): void {
     this.covoiturageService.getResrvationsList().subscribe(
       (reservationData) => {
         console.log('Reservations data:', reservationData);
-  
+
         // Assuming reservationData is an array of reservations
         const reservations: reservation[] = reservationData.map((data: any) => {
           // Create instances of the reservation class
@@ -95,10 +95,10 @@ getReservationsList(): void {
           res.etat = data.etat;
           return res;
         });
-  
+
         // Log all reservations
         console.log('All reservations:', reservations);
-  
+
         // Filter reservations with clientID 3
    // Filter reservations with clientID 3
 // Filter reservations with clientID 3
@@ -109,7 +109,7 @@ const clientReservations = reservations.filter(reservation => {
 
 
 
-  
+
         // Fetch all covoiturages associated with filtered reservations for client ID 3
         this.getAllCovoiturages(clientReservations);
       },
@@ -125,16 +125,16 @@ const clientReservations = reservations.filter(reservation => {
       this.covoiturageService.getCovoiturageById(reservation.carpoolingID).subscribe(
         (covoiturageData) => {
           const associatedCovoiturage: cov = covoiturageData;
-  
+
           // Store the associated covoiturage data
           this.combinedData.push({
             reservation: reservation,
             covoiturage: associatedCovoiturage
           });
-  
+
           // You may not need to update the covoiturages array separately
           this.covoiturages.push(associatedCovoiturage);
-  
+
           // You can use combinedData for additional details
           console.log('Combined Data:', this.combinedData);
         },
@@ -149,11 +149,11 @@ const clientReservations = reservations.filter(reservation => {
   }
   getEtatText(etat: number): string {
     switch (etat) {
-      case 3:
-        return 'WAITING...';
       case 1:
-        return 'ACCEPTED';
+        return 'WAITING...';
       case 2:
+        return 'ACCEPTED';
+      case 3:
         return 'REFUSED';
       default:
         return 'Unknown';
@@ -161,11 +161,11 @@ const clientReservations = reservations.filter(reservation => {
   }
 
   getBackgroundColor(etat: number): string {
-    return etat === 1 ? 'blue' : etat === 2 ? 'red' : 'grey';
+    return etat === 1 ? 'grey' : etat === 2 ? 'bleu' : 'red';
   }
   // Inside your component class
 getTextColor(etat: number): string {
     return etat === 1 || etat === 2 ? 'white' : 'white';
   }
-  
+
 }
