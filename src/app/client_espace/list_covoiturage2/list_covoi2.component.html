@@ -1,0 +1,95 @@
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+<body id="top">
+
+
+
+  <main>
+    <article>
+        <app-navbar></app-navbar>
+
+
+      <div id="tableauDeBord">
+        <img
+          src="./assets/images/Reservations.jpg"
+          alt=""
+        />
+      </div>
+
+      <section class="package" id="package">
+        <div class="container">
+          <h2 class="h2 section-title">My Reservation List</h2>
+          <ul class="package-list">
+            <li *ngFor="let combined of combinedData">
+              <div class="package-card">
+                <figure class="card-banner">
+                  <img src="./assets/images/packege-1.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">{{ combined.covoiturage.depart }} to {{ combined.covoiturage.destination }}</h3>
+                  <p class="card-text">
+                    Bagage: {{ combined.covoiturage.bagage }}<br>
+                    Date: {{ combined.covoiturage.date }}<br>
+                    marque: {{ combined.covoiturage.marque }}<br>
+                    <!-- Add other properties as needed -->
+                  </p>
+                  <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+                        <p class="text">{{ combined.covoiturage.heureDepart }} - {{ combined.covoiturage.heureArrive }}</p>
+                      </div>
+                    </li>
+                    <!-- Add other meta information as needed -->
+                  </ul>
+                </div>
+                <div [style.background-color]="getBackgroundColor(combined.reservation.etat)"
+                [style.color]="getTextColor(combined.reservation.etat)" class="ha">
+             <span class="waa">
+               {{ getEtatText(combined.reservation.etat) }}
+             </span>
+           </div>
+           
+                  
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    
+    <!--   <div *ngIf="carpoolingData | async as covoiturage">
+        <h2>Carpooling Details</h2>
+        <p>Client ID: {{ carpoolingData.clientID }}</p>
+        <p>Carpooling ID: {{ carpoolingData.id }}</p>
+        Add other details as needed
+      </div>--> 
+
+
+
+    </article>
+  </main>
+
+
+
+  <!--
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top" data-go-top>
+    <ion-icon name="chevron-up-outline"></ion-icon>
+  </a>
+
+<!-- Ionicons script -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+
