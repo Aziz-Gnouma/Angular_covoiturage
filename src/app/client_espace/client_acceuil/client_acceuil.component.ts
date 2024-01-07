@@ -66,4 +66,9 @@
          queryParamsHandling: 'merge',
        });
      }
+     search2(): void {
+      this.router.navigate(['/List_cov2'], {
+
+      });
+    }
    }

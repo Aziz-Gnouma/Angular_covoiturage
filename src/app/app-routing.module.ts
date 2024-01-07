@@ -18,7 +18,7 @@ import { initializeKeycloak } from './keycloak-init/keycloak-init.module';
 import * as Keycloak from 'keycloak-js';
 import {Client_acceuilComponent } from './client_espace/client_acceuil/client_acceuil.component';
 import { List_covoiturageComponent } from './client_espace/list_covoiturage/list_covoi.component';
-
+import { List_covoiturage2Component } from './client_espace/list_covoiturage2/list_covoi2.component';
 
 const routes: Routes = [
     { path: 'reservation', component: ReservationsComponent, canActivate: [AuthGuard] },
@@ -34,7 +34,7 @@ const routes: Routes = [
     { path: 'listcov', component: ListCoviComponent, canActivate: [AuthGuard] },
     { path: 'Client_acceuil', component: Client_acceuilComponent, canActivate: [AuthGuard] },
     { path: 'List_cov', component: List_covoiturageComponent , canActivate: [AuthGuard]},
-
+    { path: 'List_cov2', component: List_covoiturage2Component , canActivate: [AuthGuard]},
 
 ];
 

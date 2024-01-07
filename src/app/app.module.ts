@@ -26,6 +26,7 @@ import { ListClientComponent } from './admin/list-client/list-client.component';
 import { ListCoviComponent } from './admin/list-covi/list-covi.component';
 import { KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import { List_covoiturageComponent } from './client_espace/list_covoiturage/list_covoi.component';
+import { List_covoiturage2Component } from './client_espace/list_covoiturage2/list_covoi2.component';
 import { NavbarComponent } from './client_espace/navbar/navbar.component';
 
 
@@ -46,6 +47,7 @@ import { NavbarComponent } from './client_espace/navbar/navbar.component';
     ListCoviComponent,
 
     List_covoiturageComponent,
+    List_covoiturage2Component,
       NavbarComponent
   ],
   imports: [
