@@ -13,8 +13,21 @@
       <!-- interface-client.component.html -->
 
 <form [formGroup]="searchForm" (ngSubmit)="search()">
-  <input type="text" formControlName="source" placeholder="Enter source location" />
-  <input type="text" formControlName="destination" placeholder="Enter destination location" />
+  <input type="text" formControlName="source" placeholder="Enter source location" [matAutocomplete]="auto" />
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredSourceOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+
+  <input type="text" formControlName="destination" placeholder="Enter destination location" [matAutocomplete]="destinationAuto">
+  <mat-autocomplete #destinationAuto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredDestinationOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+  
+    <input type="text" formControlName="destination" placeholder="Enter destination location" />
   <input type="date" id="date" name="date" />
 
   <button type="submit" class="search-btn">Search</button>
