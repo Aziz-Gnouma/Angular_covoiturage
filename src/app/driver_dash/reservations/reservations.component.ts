@@ -132,7 +132,7 @@ getUsername(): void {
   combineData() {
     this.combinedData = this.res.map(reservation => {
       const matchingCovoiturage = this.ok.find(c => c.id === reservation.carpoolingID);
-      const matchingUser = this.users.find((u: { id: any; }) => u.id === reservation.clientID);
+      const matchingUser = this.users.find((u: { id: any; }) => String(u.id) === String(reservation.clientID));
   
       if (matchingCovoiturage && matchingUser) {
         return {
@@ -175,6 +175,7 @@ getUsername(): void {
   
     console.log('Combined Data:', this.combinedData);
   }
+  
   
   logout(): void {
     const redirectUri = window.location.origin + '/'; // Use the correct path
