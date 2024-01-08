@@ -10,12 +10,27 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class ListClientComponent {
   clients: user.user[] = []; // Déclaration d'une variable pour stocker la liste des conducteurs
+  username: string | undefined; 
 
-  constructor(private covoiturageService: CovoiturageService , private keycloak: KeycloakService) {}
+  constructor(private keycloakService: KeycloakService ,private covoiturageService: CovoiturageService , private keycloak: KeycloakService) {}
 
   ngOnInit() {
+    this.getUsername();
     this.getClients(); // Appel de la méthode pour récupérer les conducteurs au chargement du composant
   }
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
+  logout(): void {
+    const redirectUri = window.location.origin + '/';
+    console.log('Logout initiated. Redirect URI:', redirectUri);
+
+    this.keycloakService.logout(redirectUri)
+        .then(() => console.log('Logout successful'))
+        .catch(error => console.error('Logout failed:', error));
+}
 
   getClients(): void {
     this.covoiturageService.getClientsList().subscribe(
@@ -44,11 +59,5 @@ export class ListClientComponent {
       );
     }
   }
-  logout(): void {
-
-    this.keycloak.clearToken();
-
-
-    this.keycloak.logout('http://localhost:4200/');
-  }
+ 
 }

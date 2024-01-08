@@ -13,17 +13,33 @@ export class DashadminComponent implements OnInit {
   numberOfClients: number = 0;
   totalCovoiturages: number = 0;
   totalParticipants: number = 0;
+  username: string | undefined; 
 
-  constructor(private keycloak: KeycloakService, private covoiturageService: CovoiturageService) {
+
+  constructor(private keycloakService: KeycloakService ,private keycloak: KeycloakService, private covoiturageService: CovoiturageService) {
     Chart.register(...registerables); // Enregistrez les plugins nécessaires pour Chart.js
   }
 
   ngOnInit(): void {
+    this.getUsername();
     this.getDriversCount();
     this.getClientsCount();
     this.getCovoituragesCount();
     this.getTotalParticipants();
   }
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
+  logout(): void {
+    const redirectUri = window.location.origin + '/';
+    console.log('Logout initiated. Redirect URI:', redirectUri);
+
+    this.keycloakService.logout(redirectUri)
+        .then(() => console.log('Logout successful'))
+        .catch(error => console.error('Logout failed:', error));
+}
 
   getDriversCount(): void {
     this.covoiturageService.getDriversList().subscribe(
@@ -108,8 +124,4 @@ export class DashadminComponent implements OnInit {
     });
   }
 
-  logout(): void {
-    this.keycloak.clearToken();
-    this.keycloak.logout('http://localhost:4200/');
-  }
 }

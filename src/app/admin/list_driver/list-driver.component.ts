@@ -10,12 +10,26 @@ import { user } from 'src/app/user';
 })
 export class ListDriverComponent {
   drivers: user[] = []; // Déclaration d'une variable pour stocker la liste des conducteurs
-
-  constructor(private covoiturageService: CovoiturageService,private keycloak: KeycloakService) {}
+  username: string | undefined; 
+  constructor(private keycloakService: KeycloakService ,private covoiturageService: CovoiturageService,private keycloak: KeycloakService) {}
 
   ngOnInit() {
+    this.getUsername();
     this.getDrivers(); // Appel de la méthode pour récupérer les conducteurs au chargement du composant
   }
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
+  logout(): void {
+    const redirectUri = window.location.origin + '/';
+    console.log('Logout initiated. Redirect URI:', redirectUri);
+
+    this.keycloakService.logout(redirectUri)
+        .then(() => console.log('Logout successful'))
+        .catch(error => console.error('Logout failed:', error));
+}
 
   getDrivers(): void {
     this.covoiturageService.getDriversList().subscribe(
@@ -54,11 +68,5 @@ export class ListDriverComponent {
       }
     );
   }
-  logout(): void {
-   
-    this.keycloak.clearToken();
-    
- 
-    this.keycloak.logout('http://localhost:4200/'); 
-  }
+  
 }
