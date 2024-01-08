@@ -30,7 +30,7 @@
             <li *ngFor="let combined of combinedData">
               <div class="package-card">
                 <figure class="card-banner">
-                  <img src="./assets/images/packege-1.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
+                  <img src="./assets/images/reservation.png" alt="Experience The Great Holiday On Beach" loading="lazy">
                 </figure>
                 <div class="card-content">
                   <h3 class="h3 card-title">{{ combined.covoiturage.depart }} to {{ combined.covoiturage.destination }}</h3>
@@ -56,20 +56,20 @@
                {{ getEtatText(combined.reservation.etat) }}
              </span>
            </div>
-           
-                  
+
+
               </div>
             </li>
           </ul>
         </div>
       </section>
-    
+
     <!--   <div *ngIf="carpoolingData | async as covoiturage">
         <h2>Carpooling Details</h2>
         <p>Client ID: {{ carpoolingData.clientID }}</p>
         <p>Carpooling ID: {{ carpoolingData.id }}</p>
         Add other details as needed
-      </div>--> 
+      </div>-->
 
 
 
