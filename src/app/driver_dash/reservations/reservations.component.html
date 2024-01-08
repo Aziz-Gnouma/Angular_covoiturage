@@ -143,12 +143,12 @@
                 <td>{{ data?.destcovoiturage }}</td>
                 <td>{{ data?.datecovoiturage }}</td>
                 <td class="action-buttons" *ngIf="data?.Etatreservation === 1">
-                  <button style="margin-left: 7%;" class="btn btn-primary" 
+                  <button style="margin-left: 7%;" class="btn btn-outline-success" 
                           (click)="data && onAcceptClick(data?.clientEmail, data?.idcov, data?.clientName, data?.nomreservation)">
                     Accept
                   </button>
                   
-                  <button style="margin-left: 7%;" class="btn btn-danger" 
+                  <button style="margin-left: 7%;" class="btn btn-outline-danger" 
                           (click)="deleteReservation(data.nomreservation)">
                     Delete
                   </button>

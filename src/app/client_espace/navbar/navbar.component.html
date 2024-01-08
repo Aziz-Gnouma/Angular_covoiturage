@@ -1,21 +1,36 @@
 <!-- navbar.component.html -->
+
+ 
+
 <div id="navbar">
-  <h1 id="tawsilatext">
-    <a href="http://localhost:4200/" class="tawsila-link">
-      Tawsila
-    </a>
-  </h1>
+  
   <div id="firstnavblock">
-    <h4>
-      <a href="" (click)="search2(); false">
-        My Reservations
-      </a>
-    </h4>
+    <a href="../" class="sidebar-logo">Wassalni</a>
+    <a style="margin-left: 590px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-style: oblique;"  routerLink="/List_cov2" >My Reservations </a>
     
   </div>
   <!-- Add the provided div here -->
-  <div *ngIf="isAuthenticated" id="user-settings">
-    <i class="ri-user-settings-line"></i>
-    <button (click)="logout()">Logout</button>
-  </div>
+ 
+  <div class="dropdown dropdown-profile ms-3 ms-xl-4">
+    <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><div class="avatar online"><img src="https://img.freepik.com/free-photo/view-3d-confident-businessman_23-2150709932.jpg?t=st=1702632110~exp=1702635710~hmac=fd0be839be0320b8ebdda5c8d34daad2e8ae8980ccba1c7c4e7173921cbc795a&w=740" alt=""></div></a>
+    <div class="dropdown-menu dropdown-menu-end mt-10-f">
+      <div class="dropdown-menu-body">
+        <div class="avatar avatar-xl online mb-3"><img src="https://img.freepik.com/free-photo/view-3d-confident-businessman_23-2150709932.jpg?t=st=1702632110~exp=1702635710~hmac=fd0be839be0320b8ebdda5c8d34daad2e8ae8980ccba1c7c4e7173921cbc795a&w=740" alt=""></div>
+        <h5 class="mb-1 text-dark fw-semibold"> {{username}}</h5>
+        <p class="fs-sm text-secondary">Client Member</p>
+
+
+        <hr>
+        <nav class="nav">
+
+          <a href=""><i class="ri-user-settings-line"></i> Account Settings</a>
+          <a (click)="logout()">
+            <i class="ri-logout-box-r-line"></i> Log Out
+          </a>
+        </nav>
+      </div><!-- dropdown-menu-body -->
+    </div><!-- dropdown-menu -->
+</div><!-- dropdown -->
+</div><!-- header-main -->
+<div id="secondnavblock" style="margin-left: 80%;">
 </div>

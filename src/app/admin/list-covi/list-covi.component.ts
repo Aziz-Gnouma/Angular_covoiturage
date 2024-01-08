@@ -12,13 +12,28 @@ export class ListCoviComponent {
   covoiturages: any[] = [];
   drivers: any[] = []; // Liste des conducteurs
   participants: any[] = [];
+  username: string | undefined; 
 
-  constructor(private covoiturageService: CovoiturageService , private keycloak: KeycloakService) { }
+  constructor(private keycloakService: KeycloakService ,private covoiturageService: CovoiturageService , private keycloak: KeycloakService) { }
 
   ngOnInit(): void {
+    this.getUsername();
     this.getCovoiturages();
     this.getDrivers();
   }
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
+  }
+  logout(): void {
+    const redirectUri = window.location.origin + '/';
+    console.log('Logout initiated. Redirect URI:', redirectUri);
+
+    this.keycloakService.logout(redirectUri)
+        .then(() => console.log('Logout successful'))
+        .catch(error => console.error('Logout failed:', error));
+}
 
   getCovoiturages(): void {
     this.covoiturageService.getCovoituragesList().subscribe(
@@ -50,7 +65,7 @@ export class ListCoviComponent {
     // Vérifie si les deux tableaux sont récupérés
     if (this.covoiturages.length > 0 && this.drivers.length > 0) {
       this.covoiturages.forEach((covoiturage) => {
-        const driver = this.drivers.find((driver) => driver.id === covoiturage.driver);
+        const driver = this.drivers.find((driver) => driver.id === covoiturage.idDriver);
         if (driver) {
           covoiturage.driverName = driver.name; // Associe le nom du conducteur au covoiturage correspondant
         }
@@ -113,11 +128,5 @@ export class ListCoviComponent {
       );
     }
   }
-  logout(): void {
-   
-    this.keycloak.clearToken();
-    
  
-    this.keycloak.logout('http://localhost:4200/'); 
-  }
 }

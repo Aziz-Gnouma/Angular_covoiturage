@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  username: string | undefined; 
 
   constructor(private navbarService: NavbarService,
     private router: Router,
@@ -20,12 +21,24 @@ export class NavbarComponent implements OnInit {
       return this.keycloakService.isLoggedIn();
     }
 
-  logout(): void {
-    const redirectUri = window.location.origin + '/'; // Use the correct path
-    this.keycloakService.logout(redirectUri);
+ 
+  getUsername(): void {
+    this.keycloakService.loadUserProfile().then((profile) => {
+      this.username = profile.username;
+    });
   }
 
+  logout(): void {
+    const redirectUri = window.location.origin + '/';
+    console.log('Logout initiated. Redirect URI:', redirectUri);
+
+    this.keycloakService.logout(redirectUri)
+        .then(() => console.log('Logout successful'))
+        .catch(error => console.error('Logout failed:', error));
+}
+
   ngOnInit(): void {
+    this.getUsername();
     this.navbarService.isAuthenticated$.subscribe(() => {
     });
   }
