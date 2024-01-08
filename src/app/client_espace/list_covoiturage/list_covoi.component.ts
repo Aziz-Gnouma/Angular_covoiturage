@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { CovoiturageService } from 'src/app/covoiturage.service';
+import * as L from 'leaflet';
+import 'leaflet-routing-machine';
+
 
 @Component({
   selector: 'app-root',
@@ -13,45 +16,140 @@ export class List_covoiturageComponent implements OnInit {
   destination: string = '';
   date: string = '';
   covoiturages!: any[];
-  username: string | undefined; 
+  username: string | undefined;
 
   // Add properties for userId and covoiturageId
   userId: string = '';
   covoiturageId: number = 0;
+  map: L.Map | undefined; // Declare map property
+  mapContainer: HTMLElement | null = null;
 
-  constructor(private route: ActivatedRoute,
-     private router: Router,
-     private covoiturageService: CovoiturageService,
-     
-     private keycloakService: KeycloakService  // Inject KeycloakService
-     ) {}
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private covoiturageService: CovoiturageService,
+    private keycloakService: KeycloakService,
+    private zone: NgZone,
+    private renderer: Renderer2
+
+  ) {}
+
+
+
+  private initMap(): void {
+    try {
+      // Wait for the map container to be fully rendered
+      setTimeout(() => {
+        if (!this.map) {
+          this.zone.run(() => {
+            this.mapContainer = this.renderer.createElement('div');
+            this.renderer.setStyle(this.mapContainer!, 'height', '300px');
+
+            const mapElement = document.getElementById('map');
+            if (mapElement && this.mapContainer) {
+              this.renderer.appendChild(mapElement, this.mapContainer);
+
+              // Check the dimensions after a short delay to ensure rendering
+              setTimeout(() => {
+                const containerWidth = this.mapContainer!.offsetWidth;
+                const containerHeight = this.mapContainer!.offsetHeight;
+
+                console.log('Map Container Dimensions:', containerWidth, containerHeight);
+
+                if (containerWidth > 0 && containerHeight > 0) {
+                  this.map = L.map(this.mapContainer!).setView([34.853, 9.411], 7);
+
+                  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                  }).addTo(this.map);
+
+                  Promise.all([
+                    this.geocodeLocation(this.departure),
+                    this.geocodeLocation(this.destination)
+                  ])
+                  .then(([departureCoords, destinationCoords]) => {
+                    if (!departureCoords || !destinationCoords) {
+                      console.error('Geocoding failed: Coordinates not found.');
+                      return;
+                    }
+
+                    // Utilisez les coordonnées pour ajouter un marqueur de départ
+                    L.marker(departureCoords).addTo(this.map!)
+                      .bindPopup(this.departure)
+                      .openPopup();
+
+                    // Utilisez les coordonnées pour ajouter un marqueur de destination
+                    L.marker(destinationCoords).addTo(this.map!)
+                      .bindPopup(this.destination)
+                      .openPopup();
+
+                    // Ajoutez le contrôle de routage avec les waypoints
+                    (L as any).routing.control({
+                      waypoints: [
+                        departureCoords, // Coordonnées de départ
+                        destinationCoords // Coordonnées de destination
+                      ],
+                      routeWhileDragging: true
+                    }).addTo(this.map!);
+                  })
+                  .catch(error => console.error('Geocoding error:', error));
+
+
+
+
+                } else {
+                  console.error('Map container dimensions are not valid.');
+                }
+              }, 100);
+            }
+          });
+        }
+      }, 100); // Adjust the delay as needed
+    } catch (error) {
+      console.error('Map initialization error:', error);
+    }
+  }
+
+  private geocodeLocation(locationName: string): Promise<[number, number]> {
+    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&countrycodes=TN`;
+
+    return fetch(geocodeUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const firstResult = data[0];
+          return [parseFloat(firstResult.lat), parseFloat(firstResult.lon)];
+        } else {
+          throw new Error('Geocoding failed: No results found.');
+        }
+      });
+  }
+
+
+
 
   ngOnInit(): void {
     this.getUsername();
-    // Retrieve the query parameters from the route
+
     this.route.queryParams.subscribe((params: { [key: string]: string }) => {
       this.departure = params['departure'] || '';
       this.destination = params['destination'] || '';
       this.date = params['date'] || '';
 
-      // Fetch user information from Keycloak
       const keycloakInstance = this.keycloakService.getKeycloakInstance();
 
       if (keycloakInstance) {
         const userDetails = keycloakInstance.idTokenParsed;
 
         if (userDetails) {
-          // Log the entire user details for debugging
           console.log('User Details:', userDetails);
-
-          // Set userId from the user information
           this.userId = userDetails['sub'] || '';
-
-          // Now you have the search parameters, you can perform your search logic here
           console.log('Search Parameters:', this.departure, this.destination, this.date);
-
-          // Fetch covoiturages using search parameters
           this.searchCovoiturages();
+          this.initMap(); // Initialize the map here
+
         } else {
           console.error('User details not found in the id token.');
         }
@@ -59,6 +157,8 @@ export class List_covoiturageComponent implements OnInit {
         console.error('Keycloak instance not found.');
       }
     });
+
+
   }
 
   getUsername(): void {
@@ -72,49 +172,33 @@ export class List_covoiturageComponent implements OnInit {
     console.log('Logout initiated. Redirect URI:', redirectUri);
 
     this.keycloakService.logout(redirectUri)
-        .then(() => console.log('Logout successful'))
-        .catch(error => console.error('Logout failed:', error));
-}
+      .then(() => console.log('Logout successful'))
+      .catch(error => console.error('Logout failed:', error));
+  }
 
   searchCovoiturages(): void {
-    // No need to format the date here since it's already in the correct format
     this.covoiturageService.searchCovoiturages(this.departure, this.destination, this.date)
       .subscribe(
         data => {
-          // Log the data received
           console.log('Fetched Covoiturages:', data);
           console.log('userId:', this.userId);
-
-          // Assign the retrieved covoiturages to the component property
           this.covoiturages = data;
-
-          // You may want to navigate to the List_cov route here (commented for now)
-          // this.router.navigate(['/List_cov']);
         },
         error => {
-          // Log any error that occurs
           console.error('Error fetching Covoiturages:', error);
         }
       );
   }
 
   confirmReservation(covoiturageId: number): void {
-    // Disable any UI elements if needed
-
-    // Assign the covoiturageId to the component property
     this.covoiturageId = covoiturageId;
 
-    // Make the confirmation request using userId and covoiturageId
     this.covoiturageService.postConfirmation(this.userId, this.covoiturageId).subscribe(
       () => {
-        // Successful confirmation
         console.log('Confirmation successful.');
-        // Navigate or handle success as needed
       },
       error => {
-        // Handle unsuccessful confirmation
         console.error('Error confirming reservation', error);
-        // Handle error and enable UI elements if needed
       }
     );
   }

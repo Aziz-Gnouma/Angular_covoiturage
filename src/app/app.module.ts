@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { IonicModule } from '@ionic/angular';
+import { AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
 
 
 
@@ -59,6 +60,7 @@ import { NavbarComponent } from './client_espace/navbar/navbar.component';
     FormsModule,
     KeycloakAngularModule,
     IonicModule,
+    AutoCompleteModule
   ],
   providers: [
     KeycloakService,
